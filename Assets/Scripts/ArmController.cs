@@ -15,7 +15,7 @@ public class ArmController : MonoBehaviour
 
     public GameObject target;
     public Rigidbody2D source;
-    public TraceMode traceMode = TraceMode.Disable;
+    public TraceMode traceMode = TraceMode.MouseLeft;
     [Range(0.0f, 100000.0f)]
     public float traceAcc = 200.0f;
 

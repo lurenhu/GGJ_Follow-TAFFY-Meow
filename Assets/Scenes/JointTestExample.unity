@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 728555983}
   - component: {fileID: 728555982}
   - component: {fileID: 728555984}
+  - component: {fileID: 728555985}
   m_Layer: 0
   m_Name: Arm 1
   m_TagString: Untagged
@@ -186,6 +187,37 @@ MonoBehaviour:
   source: {fileID: 1897080213}
   traceMode: 1
   traceAcc: 12368
+--- !u!114 &728555985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728555981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46331dd527a501444adf3a4a22a2529e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  primeHealthConsume: 0
+  ratio: 0
+  HurtRatio:
+  - 1
+  - 2
+  HurtRigi: []
+  onHurt0:
+    m_PersistentCalls:
+      m_Calls: []
+  onHurt1:
+    m_PersistentCalls:
+      m_Calls: []
+  onHurt2:
+    m_PersistentCalls:
+      m_Calls: []
+  onHurt3:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &745565736
 GameObject:
   m_ObjectHideFlags: 0
