@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,86 +7,107 @@ public class Player : MonoBehaviour
     Transform bigJoint;
     Transform smallJoint;
     Transform fist;
-    
-    [Range(50,100)] public float spiningSpeed;
-    [Range(0,90)] public float SpiningUpMaxAngle;
-    [Range(270,360)] public float SpiningDownMinAngle;
 
-    Health health;
+    JointMotor2D bigJointMotor;
+    JointMotor2D smallJointMotor;
+
+    Rigidbody2D headRB2D;
+
+    [Space(10)]
+    [Header("头部及其移动速度")]
+    [SerializeField] Transform head;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float maxUp;
+    [SerializeField] float minDown;
+
+    [Space(10)]
+    [Header("关节旋转速度")]
+    [SerializeField] float bigJointSpiningSpeed;
+    [SerializeField] float smallJointSpiningSpeed;
+
+    [Space(10)]
+    [Header("关节旋转加速度")]
+    [SerializeField] float bigJointSpiningForce;
+    [SerializeField] float smallJointSpiningForce;
 
     private void Awake() {
-        health = GetComponent<Health>();
-
         Init();
+    }
+
+    private void Start() {
+        bigJointMotor = bigJoint.GetComponent<HingeJoint2D>().motor;
+        smallJointMotor = smallJoint.GetComponent<HingeJoint2D>().motor;
+
+        bigJointMotor.maxMotorTorque = bigJointSpiningForce;
+        smallJointMotor.maxMotorTorque = smallJointSpiningForce;
+
+        headRB2D = head.GetComponent<Rigidbody2D>();
     }
 
     private void Init()
     {
-        bigJoint = transform.Find("BigJoint");
-        smallJoint = transform.Find("BigJoint/BigArm/SmallJoint");
-        fist = transform.Find("BigJoint/BigArm/SmallJoint/SmallArm/Fist");
+        bigJoint = transform.Find("BigArm");
+        smallJoint = transform.Find("SmallArm");
+        fist = transform.Find("Fist");
     }
 
-    private void Update() {
+    private void FixedUpdate() {
+        PlayerArmController();
         
+        PlayerHeadController();
+
+        if (!Input.anyKey)
+        {
+            bigJointMotor.motorSpeed = 0;
+            bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
+            smallJointMotor.motorSpeed = 0;
+            smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
+        }
+    }
+
+    private void PlayerHeadController()
+    {
+        if (Input.GetKey(KeyCode.F) && head.position.y < maxUp)
+        {
+            headRB2D.MovePosition(headRB2D.position + (Vector2.up * moveSpeed * Time.fixedDeltaTime));
+        }
+
+        if (Input.GetKey(KeyCode.J) && head.position.y > minDown)
+        {
+            headRB2D.MovePosition(headRB2D.position + (Vector2.down * moveSpeed * Time.fixedDeltaTime));
+        }
+    }
+
+    private void PlayerArmController()
+    {
         if (Input.GetKey(KeyCode.Q))
         {
-            if (bigJoint.eulerAngles.z > 270 && bigJoint.eulerAngles.z < 360)
-            {
-                if (bigJoint.eulerAngles.z < SpiningDownMinAngle)
-                {
-                    return;
-                }
-                RotatingBigArmDown(spiningSpeed);
-            }
-            RotatingBigArmDown(spiningSpeed);
+            bigJointMotor.motorSpeed = -bigJointSpiningSpeed;
+            bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            if (bigJoint.eulerAngles.z > 0 && bigJoint.eulerAngles.z < 90)
-            {
-                if (bigJoint.eulerAngles.z > SpiningUpMaxAngle)
-                {
-                    return;
-                }
-                RotatingBigArmUp(spiningSpeed);
-            }
-            RotatingBigArmUp(spiningSpeed);
+            bigJointMotor.motorSpeed = bigJointSpiningSpeed;
+            bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
         }
 
         if (Input.GetKey(KeyCode.O))
         {
-            RotatingSmallArmDown(spiningSpeed);
+            smallJointMotor.motorSpeed = -smallJointSpiningSpeed;
+            smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
         }
 
         if (Input.GetKey(KeyCode.P))
         {
-            RotatingSmallArmUp(spiningSpeed);
+            smallJointMotor.motorSpeed = smallJointSpiningSpeed;
+            smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
         }
+
+        
     }
 
-    private void FixedUpdate() {
-        //Debug.Log(fist.GetComponent<Rigidbody2D>().velocity);
-    }
+    
 
-    private void RotatingBigArmUp(float spiningSpeed)
-    {
-        bigJoint.transform.Rotate(new Vector3(0,0,spiningSpeed*Time.deltaTime));
-    }
 
-    private void RotatingBigArmDown(float spiningSpeed)
-    {
-        bigJoint.transform.Rotate(new Vector3(0,0,-spiningSpeed*Time.deltaTime));
-    }
-
-    private void RotatingSmallArmUp(float spiningSpeed)
-    {
-        smallJoint.transform.Rotate(new Vector3(0,0,spiningSpeed*Time.deltaTime));
-    }
-
-    private void RotatingSmallArmDown(float spiningSpeed)
-    {
-        smallJoint.transform.Rotate(new Vector3(0,0,-spiningSpeed*Time.deltaTime));
-    }
 }
