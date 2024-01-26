@@ -12,7 +12,7 @@ public class EffectsManager : MonoBehaviour
     public ParticleSystem splashParticle;
 
     public event Action OnHitEvent = delegate{};
-    
+
     static public List<HitEffects> hitEffects = new List<HitEffects>();
 
 
@@ -26,8 +26,6 @@ public class EffectsManager : MonoBehaviour
 
     private void OnHit(Collision2D collision2D, HitEffects.HitEffectsData hitEffectsData)
     {
-        OnHitEvent.Invoke();
-
         Vector2 position = collision2D.GetContact(0).point;
         float velocity = math.abs(
             Vector2.Dot(
@@ -37,6 +35,7 @@ public class EffectsManager : MonoBehaviour
         );
         if (velocity >= hitEffectsData.minHitVelocity)
         {
+            OnHitEvent.Invoke();
             if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.componentParticle) != 0)
             {
                 componentParticle.transform.position = position;
