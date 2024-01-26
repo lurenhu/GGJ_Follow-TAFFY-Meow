@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5552103962338970607}
   - component: {fileID: 2027890190500247605}
+  - component: {fileID: 1846371139}
   m_Layer: 9
   m_Name: EnemyBody
   m_TagString: Untagged
@@ -56,7 +57,7 @@ MonoBehaviour:
   minDamageSpeed: 5
   opponentRect: {fileID: 0}
   healthRect: {fileID: 0}
-  edge: 0
+  edge: 1
   onHurt0:
     m_PersistentCalls:
       m_Calls: []
@@ -69,6 +70,23 @@ MonoBehaviour:
   onHurt3:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1846371139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512916559276981463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1f3a263e2dcb147add20b3506338ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHeadBlackborad:
+    enemyHead: {fileID: 7247526021927300019}
+    maxUp: 2
+    minDown: -2
+    moveSpeed: 10
 --- !u!1 &8441266392242832887
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,9 +162,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9058824, g: 0.06666667, b: 0.06666667, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -168,13 +186,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44ccdc2fe7a45c4486b8f4fbbfd97db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyType: 1
+  bodyType: 0
   healthSystem: {fileID: 2027890190500247605}
   fistRb: {fileID: 0}
   fistCollider: {fileID: 0}
   maxDisDamageableTime: 0.5
   disDamageableTime: 0
-  damageSystems: []
+  damageSystems:
+  - {fileID: 5414306481549681633}
+  - {fileID: 3343738818625172755}
 --- !u!58 &620023978130943068
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +205,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.000000059604645}
@@ -289,7 +309,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8588236, g: 0.6156863, b: 0.16862746, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -309,7 +329,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -348,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44ccdc2fe7a45c4486b8f4fbbfd97db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyType: 2
+  bodyType: 1
   healthSystem: {fileID: 2027890190500247605}
   fistRb: {fileID: 0}
   fistCollider: {fileID: 0}
