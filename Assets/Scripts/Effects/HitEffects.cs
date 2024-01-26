@@ -16,7 +16,7 @@ public class HitEffects : MonoBehaviour
 
     public HitEffectsData hitEffectsData = new HitEffectsData();
 
-    public event Action<Collision2D, HitEffectsData> OnHitEvent = delegate{};
+    public event Action<Vector2, float, HitEffectsData> OnHitEvent = delegate{};
 
 
     private void OnEnable()
@@ -29,17 +29,16 @@ public class HitEffects : MonoBehaviour
         EffectsManager.hitEffects.Remove(this);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public void Play(Vector2 hitPosition, float hitSpeed)
     {
-        OnHitEvent.Invoke(other, hitEffectsData);
+        OnHitEvent.Invoke(hitPosition, hitSpeed, hitEffectsData);
     }
 
     [Serializable]
     public class HitEffectsData
     {
+        [Tooltip("击中特效枚举")]
         public HitEffectsEnum hitEffectsEnum = 0;
-        [Tooltip("最小击打速度")]
-        public float minHitVelocity = 10.0f;
         [Tooltip("零件初始速度系数")]
         public float componentStartSpeedFactor = 3.0f;
         [Tooltip("零件数量系数")] 

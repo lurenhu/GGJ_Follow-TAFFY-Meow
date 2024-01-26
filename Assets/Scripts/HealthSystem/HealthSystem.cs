@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -61,9 +62,22 @@ public class HealthSystem : MonoBehaviour
     }
 
     //攻击函数
-    public void Hurt(HurtType hurtType, float hitSpeed, params object[] elems)
+    public void Hurt(HurtType hurtType, Collision2D collision, params object[] elems)
     {
+        // 获取碰撞点和法向碰撞速度，其中法向碰撞速度由 碰撞体相对速度 与 第一个碰撞点的法向 点乘得出
+        Vector2 hitPosition = collision.GetContact(0).point;
+        float hitSpeed = math.abs(
+            Vector2.Dot(
+                collision.relativeVelocity,
+                collision.GetContact(0).normal.normalized
+            )
+        );
+        // 判断法向碰撞速度是否大于最低伤害速度
         if (hitSpeed < minDamageSpeed) return;
+        // 被碰撞体是否有HitEffects组件,有则传参播放特效
+        HitEffects hitEffects = collision.otherCollider.gameObject.GetComponent<HitEffects>();
+        if (hitEffects) {hitEffects.Play(hitPosition, hitSpeed - minDamageSpeed);}
+
         switch (elems.Length)
         {
             case 0:

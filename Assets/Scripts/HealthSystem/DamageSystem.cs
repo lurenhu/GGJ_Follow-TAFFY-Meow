@@ -50,10 +50,10 @@ public class DamageSystem : MonoBehaviour
             switch (bodyType)
             {
                 case BodyType.kHead:
-                    healthSystem.Hurt(HurtType.kHead, fistRb.velocity.magnitude);
+                    healthSystem.Hurt(HurtType.kHead, collision);
                     break;
                 case BodyType.kBody:
-                    healthSystem.Hurt(HurtType.kBody, fistRb.velocity.magnitude);
+                    healthSystem.Hurt(HurtType.kBody, collision);
                     break;
                 default:
                     break;

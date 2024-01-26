@@ -24,39 +24,30 @@ public class EffectsManager : MonoBehaviour
         }
     }
 
-    private void OnHit(Collision2D collision2D, HitEffects.HitEffectsData hitEffectsData)
+    private void OnHit(Vector2 hitPosition, float hitSpeed, HitEffects.HitEffectsData hitEffectsData)
     {
-        Vector2 position = collision2D.GetContact(0).point;
-        float velocity = math.abs(
-            Vector2.Dot(
-                collision2D.relativeVelocity,
-                collision2D.GetContact(0).normal.normalized
-            )
-        );
-        if (velocity >= hitEffectsData.minHitVelocity)
+        OnHitEvent.Invoke();
+        if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.componentParticle) != 0)
         {
-            OnHitEvent.Invoke();
-            if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.componentParticle) != 0)
-            {
-                componentParticle.transform.position = position;
-                componentParticle.startSpeed = velocity
-                    * math.max(hitEffectsData.componentStartSpeedFactor, 0.0f);
-                int componentCount = (int)(
-                    (velocity - hitEffectsData.minHitVelocity)
-                    * math.max(hitEffectsData.componentCountFactor, 0.0f)
-                );
-                componentParticle.Emit(componentCount);
-            }
-            if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.splashParticle) != 0)
-            {
-                sparkParticle.transform.position = position;
-                sparkParticle.Emit(20);
-            }
-            if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.splashParticle) != 0)
-            {
-                splashParticle.transform.position = position;
-                splashParticle.Emit(1);
-            }
+            componentParticle.transform.position = hitPosition;
+            ParticleSystem.MainModule main = componentParticle.main;
+            main.startSpeed = hitSpeed
+                * math.max(hitEffectsData.componentStartSpeedFactor, 0.0f);
+            int componentCount = (int)(
+                hitSpeed
+                * math.max(hitEffectsData.componentCountFactor, 0.0f)
+            );
+            componentParticle.Emit(componentCount);
+        }
+        if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.splashParticle) != 0)
+        {
+            sparkParticle.transform.position = hitPosition;
+            sparkParticle.Emit(20);
+        }
+        if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.splashParticle) != 0)
+        {
+            splashParticle.transform.position = hitPosition;
+            splashParticle.Emit(1);
         }
     }
 
