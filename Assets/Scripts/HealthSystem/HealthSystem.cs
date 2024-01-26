@@ -11,9 +11,12 @@ public enum HurtType
 };
 public class HealthSystem : MonoBehaviour
 {
-    [Header("最大血槽")]
+    [Header("初始最大血槽")]
     [SerializeField]
     private float maxHealth;
+    [Header("现在血槽")]
+    [SerializeField]
+    private float maxCurrentHealth;
     [Header("初始扣血量,新的扣血量为初始扣血量乘以倍率")]
     [SerializeField]
     private float primeHealthConsume;
@@ -23,6 +26,20 @@ public class HealthSystem : MonoBehaviour
     [Header("各部位受伤倍率加成,依次为头，身体，初始为1.5,1")]
     [SerializeField]
     private float[] hurtRatio = new float[] { 1.5f, 1.0f };
+    [Header("最小造成伤害速度")]
+    [SerializeField]
+    private float minDamageSpeed = 5.0f;
+    [Header("对方血槽系统的Rect")]
+    [SerializeField]
+    private RectTransform opponentRect;
+    [Header("对方血槽系统中子物体的Rect")]
+    [SerializeField]
+    private RectTransform healthRect;
+    [Header("血条对齐方向")]
+    [SerializeField]
+    private RectTransform.Edge edge;
+    //获取血槽
+    public float getCurrentHealth { get { return maxCurrentHealth; } }
     //[Header("各部位碰撞体")]
     //[SerializeField]
     //private Rigidbody2D[] HurtRigi;
@@ -35,7 +52,7 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        if (maxHealth == 0) maxHealth = 5.0f;
+        maxCurrentHealth = maxHealth;
         if (primeHealthConsume == 0) primeHealthConsume = 1.0f;
         if (onHurt0 == null) onHurt0 = new UnityEvent();
         if (onHurt1 == null) onHurt1 = new UnityEvent<object>();
@@ -46,6 +63,7 @@ public class HealthSystem : MonoBehaviour
     //攻击函数
     public void Hurt(HurtType hurtType, float hitSpeed, params object[] elems)
     {
+        if (hitSpeed < minDamageSpeed) return;
         switch (elems.Length)
         {
             case 0:
@@ -63,10 +81,20 @@ public class HealthSystem : MonoBehaviour
             default:
                 break;
         }
+
         ratio = hurtRatio[(int)hurtType] * hitSpeed;
-        maxHealth -= primeHealthConsume * ratio;
-        if (maxHealth < 0) maxHealth = 0;
-        Debug.Log("血槽：" + maxHealth + " " + "倍率：" + ratio + " " +
+        maxCurrentHealth -= primeHealthConsume * ratio;
+        if (maxCurrentHealth < 0)
+        {
+            maxCurrentHealth = 0;
+            healthRect.SetInsetAndSizeFromParentEdge(edge, 0, opponentRect.rect.width);
+        }
+        else
+        {
+            healthRect.SetInsetAndSizeFromParentEdge(edge, 0, opponentRect.rect.width *
+                (1 - maxCurrentHealth / maxHealth));
+        }
+        Debug.Log("血槽：" + maxCurrentHealth + " " + "倍率：" + ratio + " " +
             "拳头速度：" + hitSpeed + " " + "伤害加成：" + hurtRatio[(int)hurtType]);
     }
 }
