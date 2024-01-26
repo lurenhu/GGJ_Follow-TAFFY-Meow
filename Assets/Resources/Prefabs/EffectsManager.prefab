@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7210372164628572746}
-  - component: {fileID: 7210372164628572747}
+  - component: {fileID: 1286372116}
   m_Layer: 0
   m_Name: EffectsManager
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7210372164628572747
+--- !u!114 &1286372116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,15 +45,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7210372164628572745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aed81ac4732ffa4d85937324a9d9aab, type: 3}
+  m_Script: {fileID: 11500000, guid: 4feaaf8a6a41233408ff28cbabca1fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentParticle: {fileID: 0}
-  sparkParticle: {fileID: 0}
-  splashParticle: {fileID: 0}
-  minHitVelocity: 10
-  componentStartSpeedFactor: 3
-  componentCountFactor: 0.5
+  componentParticle: {fileID: 7210372164862065909}
+  sparkParticle: {fileID: 7210372165466891417}
+  splashParticle: {fileID: 7210372165758853790}
 --- !u!1 &7210372164862065898
 GameObject:
   m_ObjectHideFlags: 0
@@ -5582,7 +5579,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
