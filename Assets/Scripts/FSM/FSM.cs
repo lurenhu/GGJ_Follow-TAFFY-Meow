@@ -7,7 +7,9 @@ public enum StateType
 {
     //此处放置所需要的状态枚举名称
     ATTACK,
-    DEFANCE
+    DEFANCE,
+    MOVEDOWN,
+    MOVEUP
 }
 
 [Serializable]

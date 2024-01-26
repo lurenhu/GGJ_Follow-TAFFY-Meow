@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5060357648424057839}
   - component: {fileID: 5081495126926605759}
   - component: {fileID: 8975610743227391434}
-  m_Layer: 0
-  m_Name: bone_2
+  m_Layer: 6
+  m_Name: SmallArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,15 +70,15 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 10.036229, y: -0.00000047683716}
-  m_UseMotor: 0
+  m_ConnectedAnchor: {x: 10.036229, y: -0.0000005298191}
+  m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 90
-    m_UpperAngle: -90
+    m_LowerAngle: 0
+    m_UpperAngle: 360
 --- !u!70 &8975610743227391434
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 669501116811277419}
   - component: {fileID: 4417223486038388802}
   - component: {fileID: 4461870331471007325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: playerArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,8 +123,8 @@ Transform:
   m_GameObject: {fileID: 4889607073473187342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.57, y: 2.14, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 728419438706754042}
   - {fileID: 5696599543376249877}
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1952200398, guid: df0fb7da95ffffa419da511067ab83ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -202,8 +202,8 @@ MonoBehaviour:
   - {fileID: 5696599543376249877}
   - {fileID: 1157775345787777}
   m_Bounds:
-    m_Center: {x: 5.6271315, y: -2.609077, z: 0}
-    m_Extent: {x: 12.89279, y: 5.111462, z: 0}
+    m_Center: {x: 5.6271315, y: -2.6090765, z: 0}
+    m_Extent: {x: 12.892789, y: 5.1114626, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -219,10 +219,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d530253aa217e4e9e58984a99b1389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bigJointSpiningSpeed: 0
-  smallJointSpiningSpeed: 0
-  bigJointSpiningForce: 0
-  smallJointSpiningForce: 0
+  head: {fileID: 0}
+  moveSpeed: 10
+  maxUp: 4
+  minDown: -4
+  bigJointSpiningSpeed: 100
+  smallJointSpiningSpeed: 100
+  bigJointSpiningForce: 1000
+  smallJointSpiningForce: 1000
 --- !u!1 &5220434139331574468
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,8 +239,8 @@ GameObject:
   - component: {fileID: 6519481183588305598}
   - component: {fileID: 4698144525368226964}
   - component: {fileID: 614221214341127025}
-  m_Layer: 0
-  m_Name: bone_3
+  m_Layer: 6
+  m_Name: Fist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,15 +297,15 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 8.745418, y: -0.0000010728837}
-  m_UseMotor: 0
+  m_ConnectedAnchor: {x: 8.745418, y: -0.0000014570026}
+  m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 90
-    m_UpperAngle: -90
+    m_LowerAngle: 0
+    m_UpperAngle: 360
 --- !u!70 &614221214341127025
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -330,8 +334,8 @@ GameObject:
   - component: {fileID: 257831112463551143}
   - component: {fileID: 6373297746585920755}
   - component: {fileID: 5793764711037091827}
-  m_Layer: 0
-  m_Name: bone_1
+  m_Layer: 6
+  m_Name: BigArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,17 +390,17 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
+  m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_UseMotor: 0
+  m_ConnectedAnchor: {x: -4.3665085, y: -1.5041825}
+  m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 90
-    m_UpperAngle: -90
+    m_LowerAngle: 0
+    m_UpperAngle: 360
 --- !u!70 &5793764711037091827
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

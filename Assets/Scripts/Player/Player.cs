@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     JointMotor2D bigJointMotor;
     JointMotor2D smallJointMotor;
 
-    Rigidbody2D headRB2D;
 
     [Space(10)]
     [Header("头部及其移动速度")]
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
         bigJointMotor.maxMotorTorque = bigJointSpiningForce;
         smallJointMotor.maxMotorTorque = smallJointSpiningForce;
 
-        headRB2D = head.GetComponent<Rigidbody2D>();
     }
 
     private void Init()
@@ -69,12 +67,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F) && head.position.y < maxUp)
         {
-            headRB2D.MovePosition(headRB2D.position + (Vector2.up * moveSpeed * Time.fixedDeltaTime));
+            head.transform.position += new Vector3(0,moveSpeed * Time.deltaTime,0);
         }
 
         if (Input.GetKey(KeyCode.J) && head.position.y > minDown)
         {
-            headRB2D.MovePosition(headRB2D.position + (Vector2.down * moveSpeed * Time.fixedDeltaTime));
+            head.transform.position += new Vector3(0,-moveSpeed * Time.deltaTime,0);
         }
     }
 

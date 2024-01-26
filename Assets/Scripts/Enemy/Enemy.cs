@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -13,6 +14,8 @@ public class EnemyBlackborad : Blackborad
     public float randomRadius;
     [Range(50,200)] public float traceWeight;
 
+    [Range(0,100)] public int odds;
+
 }
 
 public class AI_Attack : IState
@@ -21,6 +24,8 @@ public class AI_Attack : IState
     float attackTimer;//进攻冷却时间
     Vector2 targetPosition;
     Rigidbody2D fistRB2D;
+
+    int randomNumber;
 
     //基本数据
     FSM fsm;
@@ -39,6 +44,8 @@ public class AI_Attack : IState
     public void OnEnter()
     {
         attackTimer = 0;
+
+        randomNumber = Random.Range(0,100);
         
         float RandomX = Random.Range(-enemyBlackborad.randomRadius,enemyBlackborad.randomRadius);
         float RandomY = Random.Range(-enemyBlackborad.randomRadius,enemyBlackborad.randomRadius);
@@ -66,7 +73,13 @@ public class AI_Attack : IState
         attackTimer += Time.deltaTime;
         if (attackTimer >= enemyBlackborad.attackTime)
         {
-            fsm.SwitchState(StateType.DEFANCE);
+            if (randomNumber < enemyBlackborad.odds)
+            {
+                fsm.SwitchState(StateType.ATTACK);
+            }else
+            {
+                fsm.SwitchState(StateType.DEFANCE);
+            }
         }
     }
 }
@@ -76,6 +89,8 @@ public class AI_Defance : IState
     float defanceTimer;
     Vector2 targetPosition;
     Rigidbody2D fistRB2D;
+
+    int randomNumber;
 
     FSM fsm;
     EnemyBlackborad enemyBlackborad;
@@ -91,6 +106,8 @@ public class AI_Defance : IState
     public void OnEnter()
     {
         defanceTimer = 0;
+
+        randomNumber = Random.Range(0,100);
 
         float RandomX = Random.Range(-enemyBlackborad.randomRadius,enemyBlackborad.randomRadius);
         float RandomY = Random.Range(-enemyBlackborad.randomRadius,enemyBlackborad.randomRadius);
@@ -117,7 +134,13 @@ public class AI_Defance : IState
         defanceTimer += Time.deltaTime;
         if (defanceTimer >= enemyBlackborad.defanceTime)
         {
-            fsm.SwitchState(StateType.ATTACK);
+            if (randomNumber < enemyBlackborad.odds)
+            {
+                fsm.SwitchState(StateType.ATTACK);
+            }else
+            {
+                fsm.SwitchState(StateType.DEFANCE);
+            }
         }
     }
 }

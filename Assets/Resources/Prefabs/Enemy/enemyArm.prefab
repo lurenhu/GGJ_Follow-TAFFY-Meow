@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8036172332357141484}
   - component: {fileID: 3521648813587633209}
   - component: {fileID: 5906251316956111578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 7582815748901966294}
   - component: {fileID: 7603353952769513350}
   - component: {fileID: 6020842855592540147}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,10 +153,10 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 90
-    m_UpperAngle: -90
+    m_LowerAngle: 0
+    m_UpperAngle: 360
 --- !u!70 &6020842855592540147
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 8464598373782708359}
   - component: {fileID: 7940615020351708845}
   - component: {fileID: 2848443438968009032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,10 +248,10 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 90
-    m_UpperAngle: -90
+    m_LowerAngle: 0
+    m_UpperAngle: 360
 --- !u!70 &2848443438968009032
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 2759327165864894034}
   - component: {fileID: 1318626275839023739}
   - component: {fileID: 7615328718940139334}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: enemyArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,6 +393,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c3202734e631f41aec6eb19b03d661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBlackborad:
+    attackPosition: {fileID: 0}
+    defancePosition: {fileID: 0}
+    enemyFist: {fileID: 3388270676371704248}
+    attackTime: 3
+    defanceTime: 3
+    randomRadius: 3
+    traceWeight: 88.3
 --- !u!1 &8403596846693209793
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +413,7 @@ GameObject:
   - component: {fileID: 3212635263576187038}
   - component: {fileID: 8607243445112147658}
   - component: {fileID: 9180029877866862026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,10 +476,10 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 90
-    m_UpperAngle: -90
+    m_LowerAngle: 0
+    m_UpperAngle: 360
 --- !u!70 &9180029877866862026
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
