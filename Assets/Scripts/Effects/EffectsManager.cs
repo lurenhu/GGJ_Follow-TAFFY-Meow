@@ -13,7 +13,6 @@ public class EffectsManager : MonoBehaviour
     public ParticleSystem splashParticle;
     public SpriteRenderer splashSprite;
     [Space(10)]
-    public float hardHitSpeed = 10.0f;
     public float timeScaleDuration = 0.5f;
     [Range(0.0f, 1.0f)]
     public float timeScaleExitTime = 0.3f;
@@ -35,7 +34,7 @@ public class EffectsManager : MonoBehaviour
         xVariable = math.max(timeScaleDuration, 0.0f);
     }
 
-    private void OnHit(Vector2 hitPosition, float hitSpeed, HitEffects.HitEffectsData hitEffectsData)
+    private void OnHit(Vector2 hitPosition, float hitSpeed, HurtType hurtType, HitEffects.HitEffectsData hitEffectsData)
     {
         if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.componentParticle) != 0)
         {
@@ -63,10 +62,11 @@ public class EffectsManager : MonoBehaviour
             splashParticle.Emit(1);
         }
 
-        if (hitSpeed > hardHitSpeed)
+        if (hurtType == HurtType.kHead)
         {
             OnHitEvent.Invoke(true);
             xVariable = 0.0f;
+            xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDuration);
             if (splashSprite)
             {
                 splashSprite.transform.position = hitPosition;
@@ -88,7 +88,7 @@ public class EffectsManager : MonoBehaviour
     {
         timeScaleDuration = math.max(timeScaleDuration, 0.0f);
         Time.timeScale = GetTimeScale();
-        xVariable = math.min(xVariable + Time.deltaTime / Time.timeScale, timeScaleDuration);
+        xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDuration);
     }
 
     private float GetTimeScale()
