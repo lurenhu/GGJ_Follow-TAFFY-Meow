@@ -14,6 +14,7 @@ public class CheckHealth : MonoBehaviour
     public GameObject UIWin;
 
     public Sprite[] Images;
+    [Range(0,100)] public static int odds;
 
     private void Update() {
         if (isPlayer)
@@ -27,11 +28,11 @@ public class CheckHealth : MonoBehaviour
 
     private void CheckPlayer()
     {
-        if (myHealth.getCurrentHealth > 50)
+        if (myHealth.getCurrentHealth > 145)
         {
             Head.sprite = Images[0];
         }
-        else if(myHealth.getCurrentHealth <= 50 && myHealth.getCurrentHealth > 0)
+        else if(myHealth.getCurrentHealth <= 145 && myHealth.getCurrentHealth > 0)
         {
             Head.sprite = Images[1];
         }
@@ -46,12 +47,24 @@ public class CheckHealth : MonoBehaviour
 
     private void CheckAI()
     {
-        if (myHealth.getCurrentHealth > 50)
+        if (myHealth.getCurrentHealth > 145)
         {
+            if (myHealth.getCurrentHealth > 203)
+                odds = 90;
+            else 
+            {
+                odds = 75;
+            }
             Head.sprite = Images[3];
         }
-        else if(myHealth.getCurrentHealth <= 50 && myHealth.getCurrentHealth > 0)
+        else if(myHealth.getCurrentHealth <= 145 && myHealth.getCurrentHealth > 0)
         {
+            if (myHealth.getCurrentHealth > 87)
+                odds = 68;
+            else
+            {
+                odds = 60;
+            }
             Head.sprite = Images[4];
         }
         else

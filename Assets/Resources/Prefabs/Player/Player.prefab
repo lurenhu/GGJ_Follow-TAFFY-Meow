@@ -1113,7 +1113,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -1.5409942, y: 0.020195484}
-  m_ConnectedAnchor: {x: -2.8255281, y: -1.8692033}
+  m_ConnectedAnchor: {x: -3.885528, y: -1.8692033}
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
@@ -1272,8 +1272,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.705, y: 0.84499997}
-      - {x: 1.645, y: 0.835}
+    - - {x: 1.645, y: 0.835}
       - {x: 1.6238103, y: 2.2794876}
       - {x: 1.5311599, y: 2.4633276}
       - {x: 1.3956475, y: 2.5698645}
@@ -1286,9 +1285,6 @@ PolygonCollider2D:
       - {x: 1.5372453, y: -2.4501343}
       - {x: 1.6156521, y: -2.2852898}
       - {x: 1.6282077, y: -0.9356215}
-      - {x: 2.7082582, y: -0.93121696}
-      - {x: 2.7730114, y: -0.88218975}
-      - {x: 2.7749999, y: 0.78499997}
 --- !u!114 &1286000038
 MonoBehaviour:
   m_ObjectHideFlags: 0
