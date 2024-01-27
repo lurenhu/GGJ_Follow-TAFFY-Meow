@@ -13,20 +13,24 @@ public class EffectsManager : MonoBehaviour
     public ParticleSystem splashParticle;
     public SpriteRenderer splashSprite;
     [Space(10)]
+    [Header("相机演出")]
     public Camera camera;
     // public bool autoFindMainCamera = true;
     [Range(0, 240)]public float cameraShakeFrameRate = 240.0f;
     [Range(0, 1)]public float cameraShakeFactor = 0.01f;
     [Space(10)]
-    public float timeScaleDuration = 0.5f;
+    [Header("减速效果")]
+    public float timeScaleDurationFactor = 0.01f;
     [Range(0.0f, 1.0f)]
     public float timeScaleExitTime = 0.3f;
     public float timeScaleMinValue = 0.1f;
+
 
     public event Action<bool> OnHitEvent = delegate{};
 
     static public List<HitEffects> hitEffects = new List<HitEffects>();
 
+    private float timeScaleDurationFactoWithSpeed;
     private float xVariable;
     private float cameraShakeIntensity = 0.0f;
     private float cameraShakeAngle = 0.0f;
@@ -39,7 +43,7 @@ public class EffectsManager : MonoBehaviour
         {
             hitEffects[i].OnHitEvent += OnHit;
         }
-        xVariable = math.max(timeScaleDuration, 0.0f);
+        xVariable = math.max(timeScaleDurationFactor, 0.0f);
         cameraOriginalPositon = camera.transform.position;
     }
 
@@ -75,8 +79,9 @@ public class EffectsManager : MonoBehaviour
         {
             OnHitEvent.Invoke(true);
             
+            timeScaleDurationFactoWithSpeed = hitSpeed;
             xVariable = 0.0f;
-            xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDuration);
+            xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDurationFactor * timeScaleDurationFactoWithSpeed);
             
             if (splashSprite) splashSprite.transform.position = hitPosition;
         }
@@ -93,21 +98,22 @@ public class EffectsManager : MonoBehaviour
     {
         if (!PauseMenu.gameIsPause)
         {
-            timeScaleDuration = math.max(timeScaleDuration, 0.0f);
+            timeScaleDurationFactor = math.max(timeScaleDurationFactor, 0.0f);
             Time.timeScale = GetTimeScale();
-            xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDuration);
+            xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDurationFactor * timeScaleDurationFactoWithSpeed);
         }
     }
 
     private float GetTimeScale()
     {
-        if (xVariable < timeScaleExitTime * timeScaleDuration)
+        if (xVariable < timeScaleExitTime * timeScaleDurationFactor * timeScaleDurationFactoWithSpeed)
         {
             if (splashSprite) splashSprite.enabled = true;
             return timeScaleMinValue;
         }
         else
         {
+            float timeScaleDuration = timeScaleDurationFactor * timeScaleDurationFactoWithSpeed;
             if (splashSprite) splashSprite.enabled = false;
             return timeScaleMinValue + 
                 (xVariable - timeScaleExitTime * timeScaleDuration)
