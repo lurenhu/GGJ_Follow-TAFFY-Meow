@@ -76,7 +76,7 @@ public class HealthSystem : MonoBehaviour
         if (hitSpeed < minDamageSpeed) return;
         // 被碰撞体是否有HitEffects组件,有则传参播放特效
         HitEffects hitEffects = collision.otherCollider.gameObject.GetComponent<HitEffects>();
-        if (hitEffects) {hitEffects.Play(hitPosition, hitSpeed - minDamageSpeed);}
+        if (hitEffects) {hitEffects.Play(hitPosition, hitSpeed, hurtType);}
 
         switch (elems.Length)
         {
