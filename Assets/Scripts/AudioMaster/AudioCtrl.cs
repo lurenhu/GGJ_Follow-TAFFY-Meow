@@ -58,10 +58,18 @@ public class AudioCtrl : MonoBehaviour
     public AudioClip moveClip;
     [SerializeField]
     [Header("玩家拳头刚体")]
-    public Rigidbody2D playerFistRb;
+    private Rigidbody2D playerFistRb;
     [SerializeField]
     [Header("敌人拳头刚体")]
-    public Rigidbody2D enemyFistRb;
+    private Rigidbody2D enemyFistRb;
+    [SerializeField]
+    [Header("玩家的头刚体")]
+    private Rigidbody2D playerHeadRb;
+    [SerializeField]
+    [Header("敌人的头的刚体")]
+    private Rigidbody2D enemyHeadRb;
+    [SerializeField]
+    private bool isStop = false;
     private EffectsManager effectsManager;
 
     private void Awake()
@@ -81,9 +89,6 @@ public class AudioCtrl : MonoBehaviour
             Debug.Log(audioSource[i].ToString());
             ChangeAudioVolume((VolumeType)i, audioVolume[i]);
         }
-        //GameObject.Find("EffectsManager").TryGetComponent<EffectsManager>(out effectsManager);
-        //GameObject.Find("Enemy/EnemyArm/Fist").TryGetComponent<Rigidbody2D>(out playerFistRb);
-        //GameObject.Find("Player/PlayerArm/Fist").TryGetComponent<Rigidbody2D>(out enemyFistRb);\
     }
 
     private void Update()
@@ -100,6 +105,7 @@ public class AudioCtrl : MonoBehaviour
                 GameObject.Find("EffectsManager").TryGetComponent<EffectsManager>(out effectsManager);
                 GameObject.Find("Enemy/EnemyArm/Fist").TryGetComponent<Rigidbody2D>(out playerFistRb);
                 GameObject.Find("Player/PlayerArm/Fist").TryGetComponent<Rigidbody2D>(out enemyFistRb);
+
                 if (effectsManager != null)
                 {
                     effectsManager.OnHitEvent += AttackSoundFunc;
@@ -107,37 +113,51 @@ public class AudioCtrl : MonoBehaviour
                 PlayerMoveSound();
                 EnemyMoveSound();
             }
-            if (PauseMenu.gameIsPause == true)
+            if(Input.GetKeyDown(KeyCode.Escape))
             {
-                audioSource[audioSource.Length - 2].Pause();
-                audioSource[audioSource.Length - 1].Pause();
+                if (isStop == false)
+                {
+                    audioSource[audioSource.Length - 2].Pause();
+                    audioSource[audioSource.Length - 1].Pause();
+                    isStop = true;
+                    return;
+                }
+                else
+                {
+                    isStop = false;
+                }
+
             }
         }
         else
         {
             audioSource[audioSource.Length - 2].Pause();
             audioSource[audioSource.Length - 1].Pause();
+            return;
         }
-        if (playerFistRb != null)
+        if(isStop==false)
         {
-            if (playerFistRb.velocity.magnitude < 5.0f)
-            { 
-                audioSource[audioSource.Length - 1].Pause();
-            }
-            else
+            if (playerFistRb != null)
             {
-                audioSource[audioSource.Length - 1].UnPause();
+                if (playerFistRb.velocity.magnitude < 5.0f && playerHeadRb.velocity.magnitude < 5.0f)
+                {
+                    audioSource[audioSource.Length - 1].Pause();
+                }
+                else
+                {
+                    audioSource[audioSource.Length - 1].UnPause();
+                }
             }
-        }
-        if (enemyFistRb != null)
-        {
-            if (enemyFistRb.velocity.magnitude < 5.0f)
+            if (enemyFistRb != null)
             {
-                audioSource[audioSource.Length - 2].Pause();
-            }
-            else
-            {
-                audioSource[audioSource.Length - 2].UnPause();
+                if (enemyFistRb.velocity.magnitude < 5.0f && enemyHeadRb.velocity.magnitude < 5.0f)
+                {
+                    audioSource[audioSource.Length - 2].Pause();
+                }
+                else
+                {
+                    audioSource[audioSource.Length - 2].UnPause();
+                }
             }
         }
     }
@@ -235,6 +255,10 @@ public class AudioCtrl : MonoBehaviour
             audioSource[audioSource.Length - 2].loop = true;
             audioSource[audioSource.Length - 2].Play();
         }
+    }
 
+    public void SetStart()
+    {
+        isStop = false;
     }
 }
