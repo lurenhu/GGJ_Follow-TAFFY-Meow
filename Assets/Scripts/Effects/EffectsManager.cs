@@ -86,9 +86,12 @@ public class EffectsManager : MonoBehaviour
 
     private void Update()
     {
-        timeScaleDuration = math.max(timeScaleDuration, 0.0f);
-        Time.timeScale = GetTimeScale();
-        xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDuration);
+        if (!PauseMenu.gameIsPause)
+        {
+            timeScaleDuration = math.max(timeScaleDuration, 0.0f);
+            Time.timeScale = GetTimeScale();
+            xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDuration);
+        }
     }
 
     private float GetTimeScale()
