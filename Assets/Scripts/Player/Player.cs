@@ -54,28 +54,28 @@ public class Player : MonoBehaviour
         
         PlayerHeadController();
 
-        if (!Input.anyKey)
-        {
-            bigJointMotor.motorSpeed = 0;
-            bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
-            smallJointMotor.motorSpeed = 0;
-            smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
-        }
+        ReturnInitialState();
     }
 
+    /// <summary>
+    /// 角色头部控制
+    /// </summary>
     private void PlayerHeadController()
     {
-        if (Input.GetKey(KeyCode.F) && head.position.y < maxUp)
+        if (Input.GetKey(KeyCode.F) && head.localPosition.y < maxUp)
         {
             head.transform.position += new Vector3(0,moveSpeed * Time.deltaTime,0);
         }
 
-        if (Input.GetKey(KeyCode.J) && head.position.y > minDown)
+        if (Input.GetKey(KeyCode.J) && head.localPosition.y > minDown)
         {
             head.transform.position += new Vector3(0,-moveSpeed * Time.deltaTime,0);
         }
     }
 
+    /// <summary>
+    /// 角色手臂控制
+    /// </summary>
     private void PlayerArmController()
     {
         if (Input.GetKey(KeyCode.Q))
@@ -103,6 +103,24 @@ public class Player : MonoBehaviour
         }
 
         
+    }
+
+    /// <summary>
+    /// 定义初始状态
+    /// </summary>
+    private void ReturnInitialState()
+    {
+        if (!Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.W))
+        {
+            bigJointMotor.motorSpeed = 0;
+            bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
+        }
+
+        if (!Input.GetKey(KeyCode.O) && !Input.GetKey(KeyCode.P))
+        {
+            smallJointMotor.motorSpeed = 0;
+            smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
+        }
     }
 
     

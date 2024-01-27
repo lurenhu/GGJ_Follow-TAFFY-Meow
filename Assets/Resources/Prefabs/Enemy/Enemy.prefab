@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3576074682306492882}
   - component: {fileID: 3576074682306492883}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: leg_r_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,14 +111,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3576074682612745536}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.25, y: 4.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.33202624, w: 0.9432702}
+  m_LocalPosition: {x: -5.86, y: 3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3576074682720905264}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.784}
 --- !u!212 &3576074682612745548
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.0614599, y: -0.946085}
-  m_ConnectedAnchor: {x: -0.0014594793, y: 1.8939149}
+  m_ConnectedAnchor: {x: -0.0006679594, y: 1.8914673}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -304,8 +304,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3576074682720905267}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.22, y: 1.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.40099016, w: 0.9160824}
+  m_LocalPosition: {x: -6.31, y: 1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -315,7 +315,7 @@ Transform:
   - {fileID: 3576074682612745537}
   m_Father: {fileID: 3576074683350060997}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -47.28}
 --- !u!114 &3576074682720905265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
     defanceTime: 3
     randomRadius: 3
     traceWeight: 113
-    odds: 0
+    odds: 44
 --- !u!1 &3576074683211701928
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 1.35, y: 0}
-  m_ConnectedAnchor: {x: 1.9400002, y: -1.9499999}
+  m_ConnectedAnchor: {x: 2.0007277, y: -1.7156556}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -590,14 +590,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3576074683272698275}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.31, y: 1.24, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.33202624, w: 0.9432702}
+  m_LocalPosition: {x: -4.13, y: 1.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3576074682720905264}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.784}
 --- !u!212 &3576074683272698286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -686,7 +686,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -1.3}
-  m_ConnectedAnchor: {x: -1.2399998, y: 0.05000007}
+  m_ConnectedAnchor: {x: -1.2457049, y: 0.24662766}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -721,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3576074683274803031}
   - component: {fileID: 3576074683274803028}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: leg_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3576074683372555571}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,7 +875,7 @@ GameObject:
   - component: {fileID: 3576074684136219037}
   - component: {fileID: 1134025214}
   - component: {fileID: 1134025215}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffectsData:
-    hitEffectsEnum: 2
+    hitEffectsEnum: 0
     componentStartSpeedFactor: 3
     componentCountFactor: 0.5
 --- !u!114 &1293058615
@@ -1296,7 +1296,7 @@ GameObject:
   - component: {fileID: 3576074684253987027}
   - component: {fileID: 3576074684253987024}
   - component: {fileID: 3614220150991082032}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: EnemyBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
