@@ -16,7 +16,7 @@ public class HitEffects : MonoBehaviour
 
     public HitEffectsData hitEffectsData = new HitEffectsData();
 
-    public event Action<Vector2, float, HitEffectsData> OnHitEvent = delegate{};
+    public event Action<Vector2, float, HurtType, HitEffectsData> OnHitEvent = delegate{};
 
 
     private void OnEnable()
@@ -29,9 +29,9 @@ public class HitEffects : MonoBehaviour
         EffectsManager.hitEffects.Remove(this);
     }
 
-    public void Play(Vector2 hitPosition, float hitSpeed)
+    public void Play(Vector2 hitPosition, float hitSpeed, HurtType hurtType)
     {
-        OnHitEvent.Invoke(hitPosition, hitSpeed, hitEffectsData);
+        OnHitEvent.Invoke(hitPosition, hitSpeed, hurtType, hitEffectsData);
     }
 
     [Serializable]
