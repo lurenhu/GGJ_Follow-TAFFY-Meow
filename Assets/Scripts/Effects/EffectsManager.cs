@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class EffectsManager : MonoBehaviour
@@ -10,10 +11,19 @@ public class EffectsManager : MonoBehaviour
     public ParticleSystem componentParticle;
     public ParticleSystem sparkParticle;
     public ParticleSystem splashParticle;
+    public SpriteRenderer splashSprite;
+    [Space(10)]
+    public float hardHitSpeed = 10.0f;
+    public float timeScaleDuration = 0.5f;
+    [Range(0.0f, 1.0f)]
+    public float timeScaleExitTime = 0.3f;
+    public float timeScaleMinValue = 0.1f;
 
-    public event Action OnHitEvent = delegate{};
+    public event Action<bool> OnHitEvent = delegate{};
 
     static public List<HitEffects> hitEffects = new List<HitEffects>();
+
+    private float xVariable;
 
 
     private void Start()
@@ -22,13 +32,14 @@ public class EffectsManager : MonoBehaviour
         {
             hitEffects[i].OnHitEvent += OnHit;
         }
+        xVariable = math.max(timeScaleDuration, 0.0f);
     }
 
     private void OnHit(Vector2 hitPosition, float hitSpeed, HitEffects.HitEffectsData hitEffectsData)
     {
-        OnHitEvent.Invoke();
         if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.componentParticle) != 0)
         {
+            if (!componentParticle) return;
             componentParticle.transform.position = hitPosition;
             ParticleSystem.MainModule main = componentParticle.main;
             main.startSpeed = hitSpeed
@@ -41,18 +52,59 @@ public class EffectsManager : MonoBehaviour
         }
         if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.splashParticle) != 0)
         {
+            if (!sparkParticle) return;
             sparkParticle.transform.position = hitPosition;
             sparkParticle.Emit(20);
         }
         if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.splashParticle) != 0)
         {
+            if (!splashParticle) return;
             splashParticle.transform.position = hitPosition;
             splashParticle.Emit(1);
         }
+
+        if (hitSpeed > hardHitSpeed)
+        {
+            OnHitEvent.Invoke(true);
+            xVariable = 0.0f;
+            if (splashSprite)
+            {
+                splashSprite.transform.position = hitPosition;
+            }
+        }
+        else
+        {
+            OnHitEvent.Invoke(false);
+        }
+        
     }
 
     private void PlayHitEffects(Vector3 position, float velocity)
     {
         
+    }
+
+    private void Update()
+    {
+        timeScaleDuration = math.max(timeScaleDuration, 0.0f);
+        Time.timeScale = GetTimeScale();
+        xVariable = math.min(xVariable + Time.deltaTime / Time.timeScale, timeScaleDuration);
+    }
+
+    private float GetTimeScale()
+    {
+        if (xVariable < timeScaleExitTime * timeScaleDuration)
+        {
+            if (splashSprite) splashSprite.enabled = true;
+            return timeScaleMinValue;
+        }
+        else
+        {
+            if (splashSprite) splashSprite.enabled = false;
+            return timeScaleMinValue + 
+                (xVariable - timeScaleExitTime * timeScaleDuration)
+                 / (timeScaleDuration - timeScaleExitTime * timeScaleDuration)
+                 * (1.0f - timeScaleMinValue);
+        }
     }
 }
