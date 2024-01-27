@@ -106,6 +106,7 @@ public class HealthSystem : MonoBehaviour
         {
             maxCurrentHealth = 0;
             healthImage.fillAmount = 0;
+            AudioCtrl.GetInstance.PlayDeadSound();
             //healthRect.SetInsetAndSizeFromParentEdge(edge, 0, opponentRect.rect.width);
         }
         else

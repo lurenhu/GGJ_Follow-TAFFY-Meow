@@ -1,6 +1,7 @@
 using ClockStone;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -46,6 +47,18 @@ public class AudioCtrl : MonoBehaviour
     [SerializeField]
     [Header("重击音效列表")]
     private AudioClip[] hitClip;
+    [SerializeField]
+    [Header("死亡音效")]
+    private AudioClip deadClip;
+    [SerializeField]
+    [Header("移动音效")]
+    public AudioClip moveClip;
+    [SerializeField]
+    [Header("玩家拳头刚体")]
+    public Rigidbody2D playerFistRb;
+    [SerializeField]
+    [Header("敌人拳头刚体")]
+    public Rigidbody2D enemyFistRb;
     private EffectsManager effectsManager;
 
     private void Awake()
@@ -61,12 +74,43 @@ public class AudioCtrl : MonoBehaviour
         }
         for (int i = 0; i < audioVolume.Length; i++)
         {
+            audioVolume[i] = PlayerPrefs.GetFloat(audioSource[i].ToString());
             ChangeAudioVolume((VolumeType)i, audioVolume[i]);
         }
-        effectsManager = GameObject.Find("EffectsManager").GetComponent<EffectsManager>();
+        GameObject.Find("EffectsManager").TryGetComponent<EffectsManager>(out effectsManager);
+        GameObject.Find("Enemy/EnemyArm/Fist").TryGetComponent<Rigidbody2D>(out playerFistRb);
+        GameObject.Find("Player/PlayerArm/Fist").TryGetComponent<Rigidbody2D>(out enemyFistRb);
         if (effectsManager != null)
         {
             effectsManager.OnHitEvent += AttackSoundFunc;
+        }
+        PlayerMoveSound();
+        EnemyMoveSound();
+    }
+
+    private void Update()
+    {
+        if (playerFistRb != null)
+        {
+            if (playerFistRb.velocity.magnitude < 5.0f)
+            {
+                audioSource[audioSource.Length - 1].Pause();
+            }
+            else
+            {
+                audioSource[audioSource.Length - 1].UnPause();
+            }
+        }
+        if (enemyFistRb != null)
+        {
+            if (enemyFistRb.velocity.magnitude < 5.0f)
+            {
+                audioSource[audioSource.Length - 2].Pause();
+            }
+            else
+            {
+                audioSource[audioSource.Length - 2].UnPause();
+            }
         }
     }
 
@@ -74,6 +118,14 @@ public class AudioCtrl : MonoBehaviour
     {
         this.audioVolume[(int)volumeType] = volume;
         audioSource[(int)volumeType].volume = this.audioVolume[(int)volumeType];
+        PlayerPrefs.SetFloat(audioSource[(int)volumeType].ToString(), volume);
+        if (volumeType == VolumeType.kGameSound)
+        {
+            audioSource[audioSource.Length - 1].volume = audioVolume[(int)volumeType]
+                * gameSoundVolume[(int)GameSoundType.kMove];
+            audioSource[audioSource.Length - 2].volume = audioVolume[(int)volumeType]
+                * gameSoundVolume[(int)GameSoundType.kMove];
+        }
     }
 
     public void StopOrStartMusic(VolumeType volumeType, bool isStop, AudioClip audioClip = null)
@@ -98,13 +150,16 @@ public class AudioCtrl : MonoBehaviour
         if (volumeType != VolumeType.kGameSound) audioSource[(int)volumeType].PlayOneShot(audioClip);
         else
         {
-            audioSource[(int)volumeType].pitch = Random.Range(Mathf.Min(randomPitchMin, randomPitchMax),
+            if (gameSoundType != GameSoundType.kMove)
+            {
+                audioSource[(int)volumeType].pitch = Random.Range(Mathf.Min(randomPitchMin, randomPitchMax),
     Mathf.Max(randomPitchMin, randomPitchMax));
-            float lastVolume = audioSource[(int)volumeType].volume;
-            audioSource[(int)volumeType].volume = lastVolume * gameSoundVolume[(int)gameSoundType];
-            Debug.Log(gameSoundVolume[(int)gameSoundType]);
-            audioSource[(int)volumeType].PlayOneShot(audioClip);
-            audioSource[(int)volumeType].volume = lastVolume;
+                float lastVolume = audioSource[(int)volumeType].volume;
+                audioSource[(int)volumeType].volume = lastVolume * gameSoundVolume[(int)gameSoundType];
+                Debug.Log(gameSoundVolume[(int)gameSoundType]);
+                audioSource[(int)volumeType].PlayOneShot(audioClip);
+                audioSource[(int)volumeType].volume = lastVolume;
+            }
         }
     }
 
@@ -125,5 +180,33 @@ public class AudioCtrl : MonoBehaviour
             Debug.Log("播放收击");
             PlaySound(VolumeType.kGameSound, attackClip[Random.Range(0, attackClip.Length)], GameSoundType.kAttack);
         }
+    }
+
+    public void PlayDeadSound()
+    {
+        PlaySound(VolumeType.kGameSound, deadClip, GameSoundType.kDeed);
+        audioSource[audioSource.Length - 1].Pause();
+        audioSource[audioSource.Length - 2].Pause();
+    }
+
+    public void PlayerMoveSound()
+    {
+        if (playerFistRb != null)
+        {
+            audioSource[audioSource.Length - 1].clip = moveClip;
+            audioSource[audioSource.Length - 1].loop = true;
+            audioSource[audioSource.Length - 1].Play();
+        }
+
+    }
+    public void EnemyMoveSound()
+    {
+        if(enemyFistRb != null)
+        {
+            audioSource[audioSource.Length - 2].clip = moveClip;
+            audioSource[audioSource.Length - 2].loop = true;
+            audioSource[audioSource.Length - 2].Play();
+        }
+
     }
 }

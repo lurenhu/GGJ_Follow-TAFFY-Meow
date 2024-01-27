@@ -393,33 +393,37 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
-      propertyPath: hitClip.Array.size
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: enemyFistRb
+      value: 
+      objectReference: {fileID: 784710953}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
-      propertyPath: attackClip.Array.size
+      propertyPath: playerFistRb
+      value: 
+      objectReference: {fileID: 784974095}
+    - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
+      propertyPath: MenuList.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
-      propertyPath: hitClip.Array.data[0]
+      propertyPath: MenuList.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 8984176de869289418fe834675796b08, type: 3}
+      objectReference: {fileID: 387464268}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
-      propertyPath: hitClip.Array.data[1]
+      propertyPath: MenuList.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: c96d4bf267d039b4a972af23a1130138, type: 3}
+      objectReference: {fileID: 2002843597}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
-      propertyPath: attackClip.Array.data[0]
+      propertyPath: MenuList.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: bec42fd15c3ddc04eaa1d1464fdbb6d6, type: 3}
+      objectReference: {fileID: 1413049282}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
-      propertyPath: attackClip.Array.data[1]
+      propertyPath: audioSource.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: 6447c90b197e8664c9e9b760096b40e9, type: 3}
+      objectReference: {fileID: 1559201855}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
-      propertyPath: attackClip.Array.data[2]
+      propertyPath: audioSource.Array.data[5]
       value: 
-      objectReference: {fileID: 8300000, guid: aa3d02e5bba329044a231e0fd7f2fa75, type: 3}
+      objectReference: {fileID: 1963891220}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
 --- !u!114 &671352986 stripped
@@ -706,6 +710,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1559201855 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3237754259219731833, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
+  m_PrefabInstance: {fileID: 552070735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1560657321 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9164830737581265164, guid: 04daf5ad75375504ab3554e3f1e33f65, type: 3}
@@ -913,6 +922,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1963891220 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 484818872, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
+  m_PrefabInstance: {fileID: 552070735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2002843597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8456333502243216128, guid: a0bea2eb53821bd45a145863bb7628ac, type: 3}
@@ -1073,7 +1087,7 @@ PrefabInstance:
       objectReference: {fileID: 2002843597}
     - target: {fileID: 6117832580329866931, guid: 04daf5ad75375504ab3554e3f1e33f65, type: 3}
       propertyPath: totalTime
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9018025253486549773, guid: 04daf5ad75375504ab3554e3f1e33f65, type: 3}
       propertyPath: m_Name
