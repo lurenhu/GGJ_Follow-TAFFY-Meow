@@ -13,6 +13,11 @@ public class EffectsManager : MonoBehaviour
     public ParticleSystem splashParticle;
     public SpriteRenderer splashSprite;
     [Space(10)]
+    public Camera camera;
+    // public bool autoFindMainCamera = true;
+    [Range(0, 240)]public float cameraShakeFrameRate = 240.0f;
+    [Range(0, 1)]public float cameraShakeFactor = 0.01f;
+    [Space(10)]
     public float timeScaleDuration = 0.5f;
     [Range(0.0f, 1.0f)]
     public float timeScaleExitTime = 0.3f;
@@ -23,6 +28,9 @@ public class EffectsManager : MonoBehaviour
     static public List<HitEffects> hitEffects = new List<HitEffects>();
 
     private float xVariable;
+    private float cameraShakeIntensity = 0.0f;
+    private float cameraShakeAngle = 0.0f;
+    private Vector3 cameraOriginalPositon;
 
 
     private void Start()
@@ -32,6 +40,7 @@ public class EffectsManager : MonoBehaviour
             hitEffects[i].OnHitEvent += OnHit;
         }
         xVariable = math.max(timeScaleDuration, 0.0f);
+        cameraOriginalPositon = camera.transform.position;
     }
 
     private void OnHit(Vector2 hitPosition, float hitSpeed, HurtType hurtType, HitEffects.HitEffectsData hitEffectsData)
@@ -65,22 +74,18 @@ public class EffectsManager : MonoBehaviour
         if (hurtType == HurtType.kHead)
         {
             OnHitEvent.Invoke(true);
+            
             xVariable = 0.0f;
             xVariable = math.min(xVariable + Time.unscaledDeltaTime, timeScaleDuration);
-            if (splashSprite)
-            {
-                splashSprite.transform.position = hitPosition;
-            }
+            
+            if (splashSprite) splashSprite.transform.position = hitPosition;
         }
         else
         {
             OnHitEvent.Invoke(false);
         }
-        
-    }
 
-    private void PlayHitEffects(Vector3 position, float velocity)
-    {
+        ShakeCamera(hitSpeed * cameraShakeFactor);
         
     }
 
@@ -108,6 +113,53 @@ public class EffectsManager : MonoBehaviour
                 (xVariable - timeScaleExitTime * timeScaleDuration)
                  / (timeScaleDuration - timeScaleExitTime * timeScaleDuration)
                  * (1.0f - timeScaleMinValue);
+        }
+    }
+
+    private void ShakeCamera(float intensity)
+    {
+        if (!camera) return;
+        // if (!camera && Camera.current) camera = Camera.current;
+        
+        StopCoroutine(ShakeCameraCoroutine(camera));
+        StopCoroutine(ShakeCameraFadeCoroutine(camera));
+        cameraShakeIntensity = intensity;
+        cameraOriginalPositon = camera.transform.position;
+        StartCoroutine(ShakeCameraCoroutine(camera));
+    }
+
+    private IEnumerator ShakeCameraCoroutine(Camera camera)
+    {
+        StartCoroutine(ShakeCameraFadeCoroutine(camera));
+        float timeAccumulation = 1.0f/cameraShakeFrameRate;
+        while (cameraShakeIntensity > 0)
+        {
+            if (timeAccumulation >= 1.0f/cameraShakeFrameRate && Time.timeScale > timeScaleMinValue)
+            {
+                timeAccumulation = 0.0f;
+                cameraShakeAngle += UnityEngine.Random.Range(60.0f, 300.0f);
+                cameraShakeAngle %= 360.0f;
+                Vector3 cameraShakeVector = new Vector2(
+                    math.cos(cameraShakeAngle/360.0f*2*math.PI),
+                    math.sin(cameraShakeAngle/360.0f*2*math.PI)
+                ) * cameraShakeIntensity;
+                camera.transform.position = cameraOriginalPositon + cameraShakeVector;
+            }
+            else
+            {
+                timeAccumulation += Time.deltaTime;
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator ShakeCameraFadeCoroutine(Camera camera)
+    {
+        cameraShakeIntensity = math.max(cameraShakeIntensity, 0.0f);
+        while (cameraShakeIntensity > 0)
+        {
+            cameraShakeIntensity -= Time.deltaTime;
+            yield return null;
         }
     }
 }
