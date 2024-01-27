@@ -37,9 +37,9 @@ public class AudioToolkitDemo : MonoBehaviour
     {
         GUI.skin.label.richText = true;
 
-        var headerStyle = new GUIStyle( GUI.skin.label );
-        headerStyle.normal.textColor = new UnityEngine.Color( 1, 1, 0.5f );
-        GUI.Label( new Rect( 22, 10, 300, 22 ), "<size=14>ClockStone Audio Toolkit Free Version - Demo</size>", headerStyle );
+        var headerStyle = new GUIStyle(GUI.skin.label);
+        headerStyle.normal.textColor = new UnityEngine.Color(1, 1, 0.5f);
+        GUI.Label(new Rect(22, 10, 300, 22), "<size=14>ClockStone Audio Toolkit Free Version - Demo</size>", headerStyle);
 
         int ypos = 10;
         int yposOff = 35;
@@ -257,7 +257,7 @@ public class AudioToolkitDemo : MonoBehaviour
         {
             AudioController.Play( "RandomLoopSequence" );
         }
-        ypos += yposOff;
+        ypos += yposOff; 
 
         if ( GUI.Button( new Rect( Screen.width - ( buttonWidth + 20 ), ypos, buttonWidth, 50 ), "Play intro-loop-outro sequence\ngatling gun" ) )
         {

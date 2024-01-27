@@ -4,6 +4,7 @@ using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public enum HurtType
 {
@@ -24,7 +25,7 @@ public class HealthSystem : MonoBehaviour
     [Header("倍率,计算公式为受伤倍率加成乘以目标刚体速度")]
     [SerializeField]
     private float ratio;
-    [Header("各部位受伤倍率加成,依次为头，身体，初始为1.5,1")]
+    [Header("各部位受伤倍率加成,依次为头，身体")]
     [SerializeField]
     private float[] hurtRatio = new float[] { 1.5f, 1.0f };
     [Header("最小造成伤害速度")]
@@ -39,6 +40,9 @@ public class HealthSystem : MonoBehaviour
     [Header("血条对齐方向")]
     [SerializeField]
     private RectTransform.Edge edge;
+    [Header("血条")]
+    [SerializeField]
+    private Image healthImage;
     //获取血槽
     public float getCurrentHealth { get { return maxCurrentHealth; } }
     //[Header("各部位碰撞体")]
@@ -95,18 +99,21 @@ public class HealthSystem : MonoBehaviour
             default:
                 break;
         }
-
         ratio = hurtRatio[(int)hurtType] * hitSpeed;
         maxCurrentHealth -= primeHealthConsume * ratio;
+
         if (maxCurrentHealth < 0)
         {
             maxCurrentHealth = 0;
-            healthRect.SetInsetAndSizeFromParentEdge(edge, 0, opponentRect.rect.width);
+            healthImage.fillAmount = 0;
+            //healthRect.SetInsetAndSizeFromParentEdge(edge, 0, opponentRect.rect.width);
         }
         else
         {
-            healthRect.SetInsetAndSizeFromParentEdge(edge, 0, opponentRect.rect.width *
-                (1 - maxCurrentHealth / maxHealth));
+            //healthRect.SetInsetAndSizeFromParentEdge(edge, 0, opponentRect.rect.width *
+            //    (1 - maxCurrentHealth / maxHealth));
+            healthImage.fillAmount = maxCurrentHealth / maxHealth;
+            
         }
         Debug.Log("血槽：" + maxCurrentHealth + " " + "倍率：" + ratio + " " +
             "拳头速度：" + hitSpeed + " " + "伤害加成：" + hurtRatio[(int)hurtType]);
