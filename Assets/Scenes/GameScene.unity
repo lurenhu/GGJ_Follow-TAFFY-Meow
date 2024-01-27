@@ -395,11 +395,11 @@ PrefabInstance:
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
       propertyPath: enemyFistRb
       value: 
-      objectReference: {fileID: 784710953}
+      objectReference: {fileID: 0}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
       propertyPath: playerFistRb
       value: 
-      objectReference: {fileID: 784974095}
+      objectReference: {fileID: 0}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
       propertyPath: MenuList.Array.size
       value: 3

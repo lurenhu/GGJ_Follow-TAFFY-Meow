@@ -11,6 +11,12 @@ public class MainMenu : MonoBehaviour
     public Slider ValueTwo;
     public AudioClip Botton;
 
+    private void Awake()
+    {
+        ValueOne.value = PlayerPrefs.GetFloat("Theme (UnityEngine.AudioSource)");
+        ValueTwo.value = PlayerPrefs.GetFloat("UISound (UnityEngine.AudioSource)");
+    }
+
     public void PlayGame()
     {
         AudioCtrl.GetInstance.UISoundFunc(Botton);

@@ -1,10 +1,12 @@
 using ClockStone;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum VolumeType
 {
@@ -76,25 +78,50 @@ public class AudioCtrl : MonoBehaviour
         for (int i = 0; i < audioVolume.Length; i++)
         {
             audioVolume[i] = PlayerPrefs.GetFloat(audioSource[i].ToString());
+            Debug.Log(audioSource[i].ToString());
             ChangeAudioVolume((VolumeType)i, audioVolume[i]);
         }
-        GameObject.Find("EffectsManager").TryGetComponent<EffectsManager>(out effectsManager);
-        GameObject.Find("Enemy/EnemyArm/Fist").TryGetComponent<Rigidbody2D>(out playerFistRb);
-        GameObject.Find("Player/PlayerArm/Fist").TryGetComponent<Rigidbody2D>(out enemyFistRb);
-        if (effectsManager != null)
-        {
-            effectsManager.OnHitEvent += AttackSoundFunc;
-        }
-        PlayerMoveSound();
-        EnemyMoveSound();
+        //GameObject.Find("EffectsManager").TryGetComponent<EffectsManager>(out effectsManager);
+        //GameObject.Find("Enemy/EnemyArm/Fist").TryGetComponent<Rigidbody2D>(out playerFistRb);
+        //GameObject.Find("Player/PlayerArm/Fist").TryGetComponent<Rigidbody2D>(out enemyFistRb);\
     }
 
     private void Update()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            try
+            {
+                var tmp1 = playerFistRb;
+                var tmp2 = playerFistRb.velocity.magnitude;
+            }
+            catch (Exception e) 
+            {
+                GameObject.Find("EffectsManager").TryGetComponent<EffectsManager>(out effectsManager);
+                GameObject.Find("Enemy/EnemyArm/Fist").TryGetComponent<Rigidbody2D>(out playerFistRb);
+                GameObject.Find("Player/PlayerArm/Fist").TryGetComponent<Rigidbody2D>(out enemyFistRb);
+                if (effectsManager != null)
+                {
+                    effectsManager.OnHitEvent += AttackSoundFunc;
+                }
+                PlayerMoveSound();
+                EnemyMoveSound();
+            }
+            if (PauseMenu.gameIsPause == true)
+            {
+                audioSource[audioSource.Length - 2].Pause();
+                audioSource[audioSource.Length - 1].Pause();
+            }
+        }
+        else
+        {
+            audioSource[audioSource.Length - 2].Pause();
+            audioSource[audioSource.Length - 1].Pause();
+        }
         if (playerFistRb != null)
         {
             if (playerFistRb.velocity.magnitude < 5.0f)
-            {
+            { 
                 audioSource[audioSource.Length - 1].Pause();
             }
             else
@@ -153,7 +180,7 @@ public class AudioCtrl : MonoBehaviour
         {
             if (gameSoundType != GameSoundType.kMove)
             {
-                audioSource[(int)volumeType].pitch = Random.Range(Mathf.Min(randomPitchMin, randomPitchMax),
+                audioSource[(int)volumeType].pitch = UnityEngine.Random.Range(Mathf.Min(randomPitchMin, randomPitchMax),
     Mathf.Max(randomPitchMin, randomPitchMax));
                 float lastVolume = audioSource[(int)volumeType].volume;
                 audioSource[(int)volumeType].volume = lastVolume * gameSoundVolume[(int)gameSoundType];
@@ -174,12 +201,12 @@ public class AudioCtrl : MonoBehaviour
         if (isHardHit)
         {
             Debug.Log("播放重击");
-            PlaySound(VolumeType.kGameSound, hitClip[Random.Range(0, hitClip.Length)], GameSoundType.kHit);
+            PlaySound(VolumeType.kGameSound, hitClip[UnityEngine.Random.Range(0, hitClip.Length)], GameSoundType.kHit);
         }
         else
         {
             Debug.Log("播放收击");
-            PlaySound(VolumeType.kGameSound, attackClip[Random.Range(0, attackClip.Length)], GameSoundType.kAttack);
+            PlaySound(VolumeType.kGameSound, attackClip[UnityEngine.Random.Range(0, attackClip.Length)], GameSoundType.kAttack);
         }
     }
 
