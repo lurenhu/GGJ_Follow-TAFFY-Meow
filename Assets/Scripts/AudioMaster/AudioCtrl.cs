@@ -139,7 +139,7 @@ public class AudioCtrl : MonoBehaviour
         {
             if (playerFistRb != null)
             {
-                if (playerFistRb.velocity.magnitude < 5.0f && playerHeadRb.velocity.magnitude < 5.0f)
+                if (playerFistRb.velocity.magnitude < 5.0f)
                 {
                     audioSource[audioSource.Length - 1].Pause();
                 }
@@ -150,7 +150,7 @@ public class AudioCtrl : MonoBehaviour
             }
             if (enemyFistRb != null)
             {
-                if (enemyFistRb.velocity.magnitude < 5.0f && enemyHeadRb.velocity.magnitude < 5.0f)
+                if (enemyFistRb.velocity.magnitude < 5.0f)
                 {
                     audioSource[audioSource.Length - 2].Pause();
                 }

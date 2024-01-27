@@ -401,9 +401,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
+      propertyPath: enemyHeadRb
+      value: 
+      objectReference: {fileID: 920294118}
+    - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
       propertyPath: playerFistRb
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
+      propertyPath: playerHeadRb
+      value: 
+      objectReference: {fileID: 1438482300}
     - target: {fileID: 7859067263165523367, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
       propertyPath: MenuList.Array.size
       value: 3
@@ -580,6 +588,11 @@ PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 3972145510999765826, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
   m_PrefabInstance: {fileID: 3972145511707996755}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &920294118 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3576074684136219035, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
+  m_PrefabInstance: {fileID: 3576074683052931174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1115788502
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +694,11 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 168231574418520649, guid: 0665089d724f2134faa7cb859191eb5e, type: 3}
   m_PrefabInstance: {fileID: 39915022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1438482300 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3972145512173941775, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
+  m_PrefabInstance: {fileID: 3972145511707996755}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1441950205
 GameObject:
