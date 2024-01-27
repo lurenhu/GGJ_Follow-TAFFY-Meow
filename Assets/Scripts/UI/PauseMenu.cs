@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPause = false;
     public GameObject pauseMenuUI;
+    public AudioClip Botton;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        AudioCtrl.GetInstance.UISoundFunc(Botton);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPause = false;
@@ -45,6 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        AudioCtrl.GetInstance.UISoundFunc(Botton);
         gameIsPause = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
@@ -52,6 +55,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Retry()
     {
+        AudioCtrl.GetInstance.UISoundFunc(Botton);
         gameIsPause = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
@@ -59,6 +63,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        AudioCtrl.GetInstance.UISoundFunc(Botton);
         Application.Quit();
     }
 }
