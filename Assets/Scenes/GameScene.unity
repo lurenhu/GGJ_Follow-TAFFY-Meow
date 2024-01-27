@@ -683,6 +683,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7210372164862065909, guid: 36a37fa0da8dfc943840f48641f99ec9, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7210372165152597973, guid: 36a37fa0da8dfc943840f48641f99ec9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -4.9
@@ -1492,8 +1496,12 @@ PrefabInstance:
       value: -5.19
       objectReference: {fileID: 0}
     - target: {fileID: 3576074682720905265, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
+      propertyPath: enemyBlackborad.odds
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3576074682720905265, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: enemyBlackborad.traceWeight
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3576074682720905265, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: enemyBlackborad.attackPosition
@@ -1725,12 +1733,24 @@ PrefabInstance:
       value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: bigJointSpiningForce
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
+      propertyPath: bigJointSpiningSpeed
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: smallJointSpiningForce
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
+      propertyPath: smallJointSpiningSpeed
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3972145511824581832, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: m_ConnectedAnchor.y
