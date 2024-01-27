@@ -30,7 +30,7 @@ public class EffectsManager : MonoBehaviour
 
     static public List<HitEffects> hitEffects = new List<HitEffects>();
 
-    private float timeScaleDurationFactoWithSpeed;
+    private float timeScaleDurationFactoWithSpeed = 10.0f;
     private float xVariable;
     private float cameraShakeIntensity = 0.0f;
     private float cameraShakeAngle = 0.0f;
