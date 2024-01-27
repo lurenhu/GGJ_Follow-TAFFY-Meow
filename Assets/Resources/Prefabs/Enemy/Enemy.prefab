@@ -1296,6 +1296,7 @@ GameObject:
   - component: {fileID: 3576074684253987027}
   - component: {fileID: 3576074684253987024}
   - component: {fileID: 3614220150991082032}
+  - component: {fileID: 431187186}
   m_Layer: 9
   m_Name: EnemyBody
   m_TagString: Untagged
@@ -1361,6 +1362,7 @@ MonoBehaviour:
   opponentRect: {fileID: 0}
   healthRect: {fileID: 0}
   edge: 0
+  healthImage: {fileID: 0}
   onHurt0:
     m_PersistentCalls:
       m_Calls: []
@@ -1373,3 +1375,27 @@ MonoBehaviour:
   onHurt3:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &431187186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3576074684253987026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13121fd4488de242b7fd5bfce56a378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  myHealth: {fileID: 3614220150991082032}
+  Head: {fileID: 3576074684136219034}
+  UILose: {fileID: 0}
+  UIWin: {fileID: 0}
+  Images:
+  - {fileID: 21300000, guid: 2254898f849698249952001bc7521ce9, type: 3}
+  - {fileID: 21300000, guid: 36b7016d2cca845468b9cfc3958a6a6f, type: 3}
+  - {fileID: 21300000, guid: 276e051159884344281950bf52caadf5, type: 3}
+  - {fileID: 21300000, guid: ddedf13e08b60cf49bfb9b81f4c611ca, type: 3}
+  - {fileID: 21300000, guid: 1ab90f29951ac5347bf7a86cd2fab136, type: 3}
+  - {fileID: 21300000, guid: 6eb3a689cc1c2f74eb5fbe4a86b926b7, type: 3}
