@@ -45,7 +45,7 @@ public class AI_MoveUp : IState
 
     public void OnUpdate()
     {
-        if (enemyHeadBlackborad.enemyHead.position.y >= enemyHeadBlackborad.maxUp)
+        if (enemyHeadBlackborad.enemyHead.localPosition.y >= enemyHeadBlackborad.maxUp)
         {
             fsm.SwitchState(StateType.MOVEDOWN);
             return;
@@ -85,7 +85,7 @@ public class AI_MoveDown : IState
 
     public void OnUpdate()
     {
-        if (enemyHeadBlackborad.enemyHead.position.y <= enemyHeadBlackborad.minDown)
+        if (enemyHeadBlackborad.enemyHead.localPosition.y <= enemyHeadBlackborad.minDown)
         {
             fsm.SwitchState(StateType.MOVEUP);
             return;
