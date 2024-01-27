@@ -1067,6 +1067,14 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6117832580329866931, guid: 04daf5ad75375504ab3554e3f1e33f65, type: 3}
+      propertyPath: Lose
+      value: 
+      objectReference: {fileID: 2002843597}
+    - target: {fileID: 6117832580329866931, guid: 04daf5ad75375504ab3554e3f1e33f65, type: 3}
+      propertyPath: totalTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9018025253486549773, guid: 04daf5ad75375504ab3554e3f1e33f65, type: 3}
       propertyPath: m_Name
       value: GameUI

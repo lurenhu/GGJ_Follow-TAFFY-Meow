@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         AudioCtrl.GetInstance.UISoundFunc(Botton);
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 

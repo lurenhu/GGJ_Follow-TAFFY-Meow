@@ -32,6 +32,8 @@ public class TimeCounter : MonoBehaviour
             totalTime--;
             if (totalTime == 0) 
             {
+                PauseMenu.gameIsPause = true;
+                Time.timeScale = 0;
                 Lose.SetActive(true);
             }
 
