@@ -19,6 +19,14 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.Instance.startGameCounter > 1)
+        {
+            CloseTutorial();
+        }else
+        {
+            OpenTutorial();
+        }
+
         StartCoroutine(ReadyGo());
     }
 
@@ -36,7 +44,6 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-
     }
 
     private IEnumerator ReadyGo()

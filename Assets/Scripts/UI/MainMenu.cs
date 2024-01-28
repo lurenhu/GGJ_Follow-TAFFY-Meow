@@ -22,6 +22,8 @@ public class MainMenu : MonoBehaviour
         AudioCtrl.GetInstance.UISoundFunc(Botton);
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
+
+        GameManager.Instance.startGameCounter++;
     }
 
     public void QuitGame()
