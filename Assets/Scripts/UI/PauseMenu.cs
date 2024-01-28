@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPause = false;
     public GameObject pauseMenuUI;
     public AudioClip Botton;
+
+    public Transform panel;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(ReadyGo());
     }
 
     // Update is called once per frame
@@ -28,6 +31,28 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+    }
+
+    private IEnumerator ReadyGo()
+    {
+        Time.timeScale = 0;
+        gameIsPause = true;
+
+        Text readyGo = panel.GetComponentInChildren<Text>();
+
+        readyGo.text = "Ready";
+        Debug.Log("Ready");
+        yield return new WaitForSecondsRealtime(1f);
+        Debug.Log("waitfor 1s");
+        readyGo.text = "Go";
+        Debug.Log("Go");
+        yield return new WaitForSecondsRealtime(1f);
+        Debug.Log("waitfor 1s");
+
+        Time.timeScale = 1;
+        gameIsPause = false;
+        panel.gameObject.SetActive(false);
     }
 
     public void Resume()
