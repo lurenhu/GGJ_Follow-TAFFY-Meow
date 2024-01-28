@@ -7,8 +7,4 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     public int startGameCounter;
 
-    public void PlayGame()
-    {
-        startGameCounter++;
-    }
 }

@@ -16,9 +16,13 @@ public class PauseMenu : MonoBehaviour
 
     public AudioClip readyClip;
     public AudioClip goClip;
+
+    int openTutorialCounter;
     // Start is called before the first frame update
     void Start()
     {
+        openTutorialCounter = 0;
+
         if (GameManager.Instance.startGameCounter > 1)
         {
             CloseTutorial();
@@ -27,7 +31,6 @@ public class PauseMenu : MonoBehaviour
             OpenTutorial();
         }
 
-        StartCoroutine(ReadyGo());
     }
 
     // Update is called once per frame
@@ -107,6 +110,7 @@ public class PauseMenu : MonoBehaviour
         Tutorial.SetActive(true);
         gameIsPause = true;
         Time.timeScale = 0;
+        openTutorialCounter ++;
     }
 
     public void CloseTutorial()
@@ -114,5 +118,10 @@ public class PauseMenu : MonoBehaviour
         Tutorial.SetActive(false);
         gameIsPause = false;
         Time.timeScale = 1;
+
+        if (openTutorialCounter + GameManager.Instance.startGameCounter < 3)
+        {
+            StartCoroutine(ReadyGo());
+        }
     }
 }

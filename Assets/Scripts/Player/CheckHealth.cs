@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEditor.MPE;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ public class CheckHealth : MonoBehaviour
 {
     public bool isPlayer;
     public HealthSystem myHealth;
-    public SpriteRenderer Head;
+    public SpriteRenderer playerHead;
+    public SpriteRenderer enemyHead;
 
     public GameObject UILose;
     public GameObject UIWin;
@@ -30,15 +32,17 @@ public class CheckHealth : MonoBehaviour
     {
         if (myHealth.getCurrentHealth > 145)
         {
-            Head.sprite = Images[0];
+            playerHead.sprite = Images[0];
         }
         else if(myHealth.getCurrentHealth <= 145 && myHealth.getCurrentHealth > 0)
         {
-            Head.sprite = Images[1];
+            playerHead.sprite = Images[1];
         }
         else
         {
-            Head.sprite = Images[2];
+            playerHead.sprite = Images[2];
+            enemyHead.sprite = Images[3];
+
             PauseMenu.gameIsPause = true;
             Time.timeScale = 0;
             UILose.SetActive(true);
@@ -55,7 +59,7 @@ public class CheckHealth : MonoBehaviour
             {
                 odds = 75;
             }
-            Head.sprite = Images[3];
+            enemyHead.sprite = Images[3];
         }
         else if(myHealth.getCurrentHealth <= 145 && myHealth.getCurrentHealth > 0)
         {
@@ -65,11 +69,12 @@ public class CheckHealth : MonoBehaviour
             {
                 odds = 60;
             }
-            Head.sprite = Images[4];
+            enemyHead.sprite = Images[4];
         }
         else
         {
-            Head.sprite = Images[5];
+            enemyHead.sprite = Images[5];
+            playerHead.sprite = Images[0];
             PauseMenu.gameIsPause = true;
             Time.timeScale = 0;
             UIWin.SetActive(true);
