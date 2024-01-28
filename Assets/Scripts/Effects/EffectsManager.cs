@@ -45,6 +45,7 @@ public class EffectsManager : MonoBehaviour
         }
         xVariable = math.max(timeScaleDurationFactor, 0.0f);
         cameraOriginalPositon = camera.transform.position;
+        xVariable = timeScaleExitTime * timeScaleDurationFactor * timeScaleDurationFactoWithSpeed;
     }
 
     private void OnHit(Vector2 hitPosition, float hitSpeed, HurtType hurtType, HitEffects.HitEffectsData hitEffectsData)
