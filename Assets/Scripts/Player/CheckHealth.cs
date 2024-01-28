@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using UnityEditor.MPE;
 using UnityEngine;
 
 public class CheckHealth : MonoBehaviour
