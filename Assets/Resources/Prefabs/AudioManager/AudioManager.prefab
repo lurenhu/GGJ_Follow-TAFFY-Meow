@@ -321,8 +321,8 @@ MonoBehaviour:
   - {fileID: 7859067263391299312}
   - {fileID: 7859067263342564111}
   - {fileID: 7859067262431233985}
-  - {fileID: 484818872}
   - {fileID: 3237754259219731833}
+  - {fileID: 484818872}
   randomPitchMin: 1
   randomPitchMax: 2
   attackClip:
@@ -336,6 +336,9 @@ MonoBehaviour:
   moveClip: {fileID: 8300000, guid: 55160acd252cd464696db63e8e86161b, type: 3}
   playerFistRb: {fileID: 0}
   enemyFistRb: {fileID: 0}
+  playerHeadRb: {fileID: 0}
+  enemyHeadRb: {fileID: 0}
+  isStop: 0
 --- !u!1 &7859067263342564110
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +769,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

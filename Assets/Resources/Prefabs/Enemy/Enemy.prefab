@@ -1073,7 +1073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffectsData:
-    hitEffectsEnum: 1
+    hitEffectsEnum: 3
     componentStartSpeedFactor: 3
     componentCountFactor: 0.5
 --- !u!114 &1134025215
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffectsData:
-    hitEffectsEnum: 0
+    hitEffectsEnum: 2
     componentStartSpeedFactor: 3
     componentCountFactor: 0.5
 --- !u!114 &1293058615

@@ -62,7 +62,7 @@ public class EffectsManager : MonoBehaviour
             );
             componentParticle.Emit(componentCount);
         }
-        if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.splashParticle) != 0)
+        if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.sparkParticle) != 0)
         {
             if (!sparkParticle) return;
             sparkParticle.transform.position = hitPosition;
