@@ -1119,6 +1119,9 @@ MonoBehaviour:
     hitEffectsEnum: 3
     componentStartSpeedFactor: 3
     componentCountFactor: 0.5
+    shakeTransform: {fileID: 8109961804608951796}
+    transformShakeFactor: 0.01
+    transformShakeFrameRate: 30
 --- !u!114 &1134025215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,6 +1255,9 @@ MonoBehaviour:
     hitEffectsEnum: 2
     componentStartSpeedFactor: 3
     componentCountFactor: 0.5
+    shakeTransform: {fileID: 8708856272644913187}
+    transformShakeFactor: 0.01
+    transformShakeFrameRate: 30
 --- !u!114 &1293058615
 MonoBehaviour:
   m_ObjectHideFlags: 0
