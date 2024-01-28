@@ -119,7 +119,7 @@ public class PauseMenu : MonoBehaviour
         gameIsPause = false;
         Time.timeScale = 1;
 
-        if (openTutorialCounter + GameManager.Instance.startGameCounter < 3)
+        if (openTutorialCounter + GameManager.Instance.startGameCounter < 3 || GameManager.Instance.startGameCounter > 1)
         {
             StartCoroutine(ReadyGo());
         }
