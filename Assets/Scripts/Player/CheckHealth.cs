@@ -95,7 +95,7 @@ public class CheckHealth : MonoBehaviour
         playerSprite.sprite = Images[2];
         enemySprite.sprite = Images[3];
 
-        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration));
+        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration, GameResult.Lose));
     }
 
     private void CheckAI()
@@ -135,10 +135,10 @@ public class CheckHealth : MonoBehaviour
         playerSprite.sprite = Images[0];
         enemySprite.sprite = Images[5];
 
-        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration));
+        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration, GameResult.Win));
     }
 
-    private IEnumerator GameEndCoroutine(float delay, float duration)
+    private IEnumerator GameEndCoroutine(float delay, float duration, GameResult gameResult)
     {
         PauseMenu.gameIsPause = true;
         Time.timeScale = gameEndTimeScale;
@@ -148,6 +148,15 @@ public class CheckHealth : MonoBehaviour
             delay -= Time.unscaledDeltaTime;
             yield return null;
         }
-        UIWin.SetActive(true);
+
+        if (gameResult == GameResult.Win)
+        {
+            UIWin.SetActive(true);
+        }
+        if (gameResult == GameResult.Lose)
+        {
+            UILose.SetActive(true);
+        }
+        
     }
 }
