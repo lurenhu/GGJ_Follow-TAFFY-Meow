@@ -556,7 +556,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7859067263165523364, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7859067263165523364, guid: 5682a69524ef4bc4da87baa31539289a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -859,6 +859,8 @@ MonoBehaviour:
   Botton: {fileID: 8300000, guid: 62095abec14bc774ea48c5483a27de3f, type: 3}
   panel: {fileID: 319992488}
   Tutorial: {fileID: 1900345992}
+  readyClip: {fileID: 8300000, guid: 523190fdce03a3a45be9d8825203bd99, type: 3}
+  goClip: {fileID: 8300000, guid: f09915e6d974dbb4984b17dbfd958943, type: 3}
 --- !u!50 &784710953 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3576074682612745551, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
@@ -1337,7 +1339,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1749855466
 GameObject:

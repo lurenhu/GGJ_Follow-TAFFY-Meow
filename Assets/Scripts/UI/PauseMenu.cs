@@ -13,6 +13,9 @@ public class PauseMenu : MonoBehaviour
     public Transform panel;
 
     public GameObject Tutorial;
+
+    public AudioClip readyClip;
+    public AudioClip goClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,8 +47,10 @@ public class PauseMenu : MonoBehaviour
         Text readyGo = panel.GetComponentInChildren<Text>();
 
         readyGo.text = "Ready";
+        AudioCtrl.GetInstance.PlaySound(VolumeType.kUISound,readyClip);
         yield return new WaitForSecondsRealtime(1f);
         readyGo.text = "Go";
+        AudioCtrl.GetInstance.PlaySound(VolumeType.kUISound,goClip);
         yield return new WaitForSecondsRealtime(1f);
 
         Time.timeScale = 1;
