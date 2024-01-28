@@ -2392,7 +2392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3576074683350060997, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.43
+      value: 9.48
       objectReference: {fileID: 0}
     - target: {fileID: 3576074683350060997, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2656,7 +2656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: bigJointSpiningForce
-      value: 500
+      value: 425
       objectReference: {fileID: 0}
     - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: bigJointSpiningSpeed
@@ -2664,7 +2664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: smallJointSpiningForce
-      value: 500
+      value: 425
       objectReference: {fileID: 0}
     - target: {fileID: 3972145511671636467, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: smallJointSpiningSpeed
