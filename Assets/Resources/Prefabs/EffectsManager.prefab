@@ -137,8 +137,10 @@ MonoBehaviour:
   sparkParticle: {fileID: 7210372165466891417}
   splashParticle: {fileID: 7210372165758853790}
   splashSprite: {fileID: 671405677}
-  hardHitSpeed: 10
-  timeScaleDuration: 1
+  camera: {fileID: 0}
+  cameraShakeFrameRate: 240
+  cameraShakeFactor: 0.01
+  timeScaleDurationFactor: 0.01
   timeScaleExitTime: 0.88
   timeScaleMinValue: 0.01
 --- !u!1 &7210372164862065898
@@ -5346,7 +5348,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
