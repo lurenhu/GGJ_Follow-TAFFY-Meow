@@ -496,6 +496,7 @@ MonoBehaviour:
   smallJointSpiningSpeed: 100
   bigJointSpiningForce: 10000
   smallJointSpiningForce: 10000
+  UIInput: {fileID: 0}
 --- !u!1 &3972145511689714511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1055,9 @@ MonoBehaviour:
     hitEffectsEnum: 3
     componentStartSpeedFactor: 3
     componentCountFactor: 0.5
+    shakeTransform: {fileID: 3085995958755215164}
+    transformShakeFactor: 0.01
+    transformShakeFrameRate: 30
 --- !u!114 &1691240030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,6 +1336,9 @@ MonoBehaviour:
     hitEffectsEnum: 2
     componentStartSpeedFactor: 3
     componentCountFactor: 0.5
+    shakeTransform: {fileID: 7372737081463013869}
+    transformShakeFactor: 0.01
+    transformShakeFrameRate: 30
 --- !u!114 &1286000039
 MonoBehaviour:
   m_ObjectHideFlags: 0
