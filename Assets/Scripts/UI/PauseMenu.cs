@@ -98,10 +98,14 @@ public class PauseMenu : MonoBehaviour
     public void OpenTutorial()
     {
         Tutorial.SetActive(true);
+        gameIsPause = true;
+        Time.timeScale = 0;
     }
 
     public void CloseTutorial()
     {
         Tutorial.SetActive(false);
+        gameIsPause = false;
+        Time.timeScale = 1;
     }
 }
