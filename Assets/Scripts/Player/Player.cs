@@ -1,6 +1,6 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     [Header("关节旋转加速度")]
     [SerializeField] float bigJointSpiningForce;
     [SerializeField] float smallJointSpiningForce;
+
+    [Space(10)]
+    [SerializeField] Transform UIInput;
 
     private void Awake() {
         Init();
@@ -64,11 +67,15 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F) && head.localPosition.y < maxUp)
         {
+            UIInput.Find("Key_F/Panel").gameObject.SetActive(true);
+
             head.transform.position += new Vector3(0,moveSpeed * Time.deltaTime,0);
         }
 
         if (Input.GetKey(KeyCode.J) && head.localPosition.y > minDown)
         {
+            UIInput.Find("Key_J/Panel").gameObject.SetActive(true);
+
             head.transform.position += new Vector3(0,-moveSpeed * Time.deltaTime,0);
         }
     }
@@ -80,24 +87,32 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
         {
+            UIInput.Find("Key_Q/Panel").gameObject.SetActive(true);
+
             bigJointMotor.motorSpeed = -bigJointSpiningSpeed;
             bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
         }
 
         if (Input.GetKey(KeyCode.W))
         {
+            UIInput.Find("Key_W/Panel").gameObject.SetActive(true);
+
             bigJointMotor.motorSpeed = bigJointSpiningSpeed;
             bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
         }
 
         if (Input.GetKey(KeyCode.O))
         {
+            UIInput.Find("Key_O/Panel").gameObject.SetActive(true);
+
             smallJointMotor.motorSpeed = -smallJointSpiningSpeed;
             smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
         }
 
         if (Input.GetKey(KeyCode.P))
         {
+            UIInput.Find("Key_P/Panel").gameObject.SetActive(true);
+
             smallJointMotor.motorSpeed = smallJointSpiningSpeed;
             smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
         }
@@ -110,14 +125,26 @@ public class Player : MonoBehaviour
     /// </summary>
     private void ReturnInitialState()
     {
+        if (!Input.GetKey(KeyCode.F) && !Input.GetKey(KeyCode.J))
+        {
+            UIInput.Find("Key_F/Panel").gameObject.SetActive(false);
+            UIInput.Find("Key_J/Panel").gameObject.SetActive(false);
+        }
+        
         if (!Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.W))
         {
+            UIInput.Find("Key_Q/Panel").gameObject.SetActive(false);
+            UIInput.Find("Key_W/Panel").gameObject.SetActive(false);
+
             bigJointMotor.motorSpeed = 0;
             bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
         }
 
         if (!Input.GetKey(KeyCode.O) && !Input.GetKey(KeyCode.P))
         {
+            UIInput.Find("Key_O/Panel").gameObject.SetActive(false);
+            UIInput.Find("Key_P/Panel").gameObject.SetActive(false);
+
             smallJointMotor.motorSpeed = 0;
             smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
         }
