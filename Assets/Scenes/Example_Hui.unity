@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 387464268}
+  Botton: {fileID: 0}
 --- !u!50 &784710953 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3576074682612745551, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
@@ -1666,6 +1667,10 @@ PrefabInstance:
       propertyPath: fistCollider
       value: 
       objectReference: {fileID: 784974097}
+    - target: {fileID: 3576074682612745550, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0006679594
+      objectReference: {fileID: 0}
     - target: {fileID: 3576074682720905265, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: enemyBlackborad.attackPosition
       value: 
@@ -1674,6 +1679,14 @@ PrefabInstance:
       propertyPath: enemyBlackborad.defancePosition
       value: 
       objectReference: {fileID: 1115788503}
+    - target: {fileID: 3576074683231554526, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 2.0007277
+      objectReference: {fileID: 0}
+    - target: {fileID: 3576074683272698273, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.24662766
+      objectReference: {fileID: 0}
     - target: {fileID: 3576074683350060996, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1721,6 +1734,10 @@ PrefabInstance:
     - target: {fileID: 3576074683350060997, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3576074684253987024, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
+      propertyPath: enemyHeadBlackborad.moveSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3614220150991082032, guid: e3cbb29cfbc440a40b1bcb27af5cea2e, type: 3}
       propertyPath: healthRect
@@ -1814,6 +1831,10 @@ PrefabInstance:
     - target: {fileID: 3972145511086736091, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972145512405470210, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -2.8255281
       objectReference: {fileID: 0}
     - target: {fileID: 5546298199072885280, guid: e9b8b922e24f2a14285874b992582eb3, type: 3}
       propertyPath: healthRect

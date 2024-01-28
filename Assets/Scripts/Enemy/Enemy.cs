@@ -14,8 +14,6 @@ public class EnemyBlackborad : Blackborad
     public float randomRadius;
     [Range(50,200)] public float traceWeight;
 
-    [Range(0,100)] public int odds;
-
 }
 
 public class AI_Attack : IState
@@ -73,7 +71,7 @@ public class AI_Attack : IState
         attackTimer += Time.deltaTime;
         if (attackTimer >= enemyBlackborad.attackTime)
         {
-            if (randomNumber < enemyBlackborad.odds)
+            if (randomNumber < CheckHealth.odds)
             {
                 fsm.SwitchState(StateType.ATTACK);
             }else
@@ -134,7 +132,7 @@ public class AI_Defance : IState
         defanceTimer += Time.deltaTime;
         if (defanceTimer >= enemyBlackborad.defanceTime)
         {
-            if (randomNumber < enemyBlackborad.odds)
+            if (randomNumber < CheckHealth.odds)
             {
                 fsm.SwitchState(StateType.ATTACK);
             }else

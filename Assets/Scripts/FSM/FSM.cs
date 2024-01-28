@@ -9,7 +9,9 @@ public enum StateType
     ATTACK,
     DEFANCE,
     MOVEDOWN,
-    MOVEUP
+    MOVEUP,
+    MOVE,
+    IDLE
 }
 
 [Serializable]
