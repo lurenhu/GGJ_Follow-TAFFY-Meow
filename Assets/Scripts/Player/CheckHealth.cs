@@ -1,8 +1,18 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CheckHealth : MonoBehaviour
 {
+    public enum GameResult
+    {
+        Unknown,
+        Win,
+        Lose,
+    }
+
+    public event Action<GameResult> OnGameEnd = delegate { };
+
     public Transform Player;
     public Transform Enemy;
     public GameObject UILose;
@@ -11,6 +21,10 @@ public class CheckHealth : MonoBehaviour
 
     public float playerMaxHealth;
     public float enemyMaxHealth;
+    [Space(10)]
+    public float UIShowDelay = 2.0f;
+    public float UIShowDuration = 0.5f;
+    public float gameEndTimeScale = 0.1f;
 
     SpriteRenderer playerSprite;
     SpriteRenderer enemySprite;
@@ -74,12 +88,14 @@ public class CheckHealth : MonoBehaviour
 
     private void Lose()
     {
+        if (PauseMenu.gameIsPause) return;
+
+        OnGameEnd.Invoke(GameResult.Lose);
+
         playerSprite.sprite = Images[2];
         enemySprite.sprite = Images[3];
 
-        PauseMenu.gameIsPause = true;
-        Time.timeScale = 0;
-        UILose.SetActive(true);
+        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration));
     }
 
     private void CheckAI()
@@ -112,11 +128,26 @@ public class CheckHealth : MonoBehaviour
 
     private void Win()
     {
+        if (PauseMenu.gameIsPause) return;
+
+        OnGameEnd.Invoke(GameResult.Win);
+
         playerSprite.sprite = Images[0];
         enemySprite.sprite = Images[5];
 
+        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration));
+    }
+
+    private IEnumerator GameEndCoroutine(float delay, float duration)
+    {
         PauseMenu.gameIsPause = true;
-        Time.timeScale = 0;
+        Time.timeScale = gameEndTimeScale;
+
+        while (delay > 0)
+        {
+            delay -= Time.unscaledDeltaTime;
+            yield return null;
+        }
         UIWin.SetActive(true);
     }
 }
