@@ -15,9 +15,19 @@ public class HitEffects : MonoBehaviour
         splashParticle = 1 << 2
     }
 
-    public HitEffectsData hitEffectsData = new HitEffectsData();
+    [Tooltip("击中特效枚举")]
+    public HitEffectsEnum hitEffectsEnum = 0;
+    [Tooltip("零件初始速度系数")]
+    public float componentStartSpeedFactor = 3.0f;
+    [Tooltip("零件数量系数")] 
+    public float componentCountFactor = 0.5f;
+    [Tooltip("抖动物体")]
+    public Transform shakeTransform;
+    public float transformShakeFactor = 0.01f;
 
-    public event Action<Vector2, float, HurtType, HitEffectsData> OnHitEvent = delegate{};
+    public float transformShakeFrameRate = 15.0f;
+
+    // public event Action<Vector2, float, HurtType, HitEffectsData> OnHitEvent = delegate{};
 
     private Vector3 shakeTransformOriginalPosition;
     private float shakeTransformAngle = 0.0f;
@@ -26,46 +36,46 @@ public class HitEffects : MonoBehaviour
 
     private void Start()
     {
-        if (hitEffectsData.shakeTransform)
+        if (shakeTransform)
         {
-            shakeTransformOriginalPosition = hitEffectsData.shakeTransform.localPosition;
+            shakeTransformOriginalPosition = shakeTransform.localPosition;
         }
         
     }
 
-    private void OnEnable()
-    {
-        EffectsManager.hitEffects.Add(this);
-    }
+    // private void OnEnable()
+    // {
+    //     EffectsManager.hitEffects.Add(this);
+    // }
 
-    private void OnDisable()
-    {
-        EffectsManager.hitEffects.Remove(this);
-    }
+    // private void OnDisable()
+    // {
+    //     EffectsManager.hitEffects.Remove(this);
+    // }
 
-    public void Play(Vector2 hitPosition, float hitSpeed, HurtType hurtType)
+    public void Play(float hitSpeed)
     {
-        OnHitEvent.Invoke(hitPosition, hitSpeed, hurtType, hitEffectsData);
-        ShakeTransform(hitSpeed * hitEffectsData.transformShakeFactor);
+        ShakeTransform(hitSpeed * transformShakeFactor);
     }
 
     private void ShakeTransform(float intensity)
     {
-        if (!hitEffectsData.shakeTransform) return;
+        if (!shakeTransform) return;
+        if (intensity <= 0.0f) return;
         
-        StopCoroutine(ShakeTransformCoroutine(hitEffectsData.shakeTransform));
-        StopCoroutine(ShakeTransformFadeCoroutine(hitEffectsData.shakeTransform));
+        StopCoroutine(ShakeTransformCoroutine(shakeTransform));
+        StopCoroutine(ShakeTransformFadeCoroutine(shakeTransform));
         transformShakeIntensity = intensity;
-        StartCoroutine(ShakeTransformCoroutine(hitEffectsData.shakeTransform));
+        StartCoroutine(ShakeTransformCoroutine(shakeTransform));
     }
 
     private IEnumerator ShakeTransformCoroutine(Transform transform)
     {
         StartCoroutine(ShakeTransformFadeCoroutine(transform));
-        float timeAccumulation = 1.0f/hitEffectsData.transformShakeFrameRate;
+        float timeAccumulation = 1.0f/transformShakeFrameRate;
         while (transformShakeIntensity > 0)
         {
-            if (timeAccumulation >= 1.0f/hitEffectsData.transformShakeFrameRate)
+            if (timeAccumulation >= 1.0f/transformShakeFrameRate)
             {
                 timeAccumulation = 0.0f;
                 shakeTransformAngle += UnityEngine.Random.Range(60.0f, 300.0f);
@@ -93,21 +103,5 @@ public class HitEffects : MonoBehaviour
             transformShakeIntensity -= Time.deltaTime;
             yield return null;
         }
-    }
-
-    [Serializable]
-    public class HitEffectsData
-    {
-        [Tooltip("击中特效枚举")]
-        public HitEffectsEnum hitEffectsEnum = 0;
-        [Tooltip("零件初始速度系数")]
-        public float componentStartSpeedFactor = 3.0f;
-        [Tooltip("零件数量系数")] 
-        public float componentCountFactor = 0.5f;
-        [Tooltip("抖动物体")]
-        public Transform shakeTransform;
-        public float transformShakeFactor = 0.01f;
-
-        public float transformShakeFrameRate = 15.0f;
     }
 }

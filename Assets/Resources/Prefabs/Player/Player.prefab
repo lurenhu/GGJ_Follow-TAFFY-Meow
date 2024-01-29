@@ -1055,13 +1055,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39185d8a5c808c14082f44dba7dc80c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffectsData:
-    hitEffectsEnum: 3
-    componentStartSpeedFactor: 3
-    componentCountFactor: 0.5
-    shakeTransform: {fileID: 3085995958755215164}
-    transformShakeFactor: 0.01
-    transformShakeFrameRate: 30
+  hitEffectsEnum: 3
+  componentStartSpeedFactor: 3
+  componentCountFactor: 0.5
+  shakeTransform: {fileID: 3085995958755215164}
+  transformShakeFactor: 0.01
+  transformShakeFrameRate: 30
 --- !u!114 &1691240030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,13 +1335,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39185d8a5c808c14082f44dba7dc80c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffectsData:
-    hitEffectsEnum: 2
-    componentStartSpeedFactor: 3
-    componentCountFactor: 0.5
-    shakeTransform: {fileID: 7372737081463013869}
-    transformShakeFactor: 0.01
-    transformShakeFrameRate: 30
+  hitEffectsEnum: 2
+  componentStartSpeedFactor: 3
+  componentCountFactor: 0.5
+  shakeTransform: {fileID: 7372737081463013869}
+  transformShakeFactor: 0.01
+  transformShakeFrameRate: 30
 --- !u!114 &1286000039
 MonoBehaviour:
   m_ObjectHideFlags: 0

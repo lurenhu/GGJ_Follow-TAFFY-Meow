@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class EffectsManager : MonoBehaviour
 {
+    static public EffectsManager Instance{get; private set;}
     [Header("粒子组件")]
     public ParticleSystem componentParticle;
     public ParticleSystem sparkParticle;
@@ -27,7 +28,7 @@ public class EffectsManager : MonoBehaviour
 
     public event Action<bool> OnHitEvent = delegate{};
 
-    static public List<HitEffects> hitEffects = new List<HitEffects>();
+    // static public List<HitEffects> hitEffects = new List<HitEffects>();
 
     private float timeScaleDurationFactoWithSpeed = 10.0f;
     private float xVariable;
@@ -36,19 +37,35 @@ public class EffectsManager : MonoBehaviour
     private Vector3 cameraOriginalPositon;
 
 
+    protected virtual void Awake() {
+        if (Instance != null)
+        {
+            Destroy(Instance);
+        }
+        Instance = this as EffectsManager;
+    }
+
     private void Start()
     {
-        for (int i=0; i<hitEffects.Count; i++)
-        {
-            hitEffects[i].OnHitEvent += OnHit;
-        }
+        // for (int i=0; i<hitEffects.Count; i++)
+        // {
+        //     hitEffects[i].OnHitEvent += OnHit;
+        // }
         xVariable = math.max(timeScaleDurationFactor, 0.0f);
         cameraOriginalPositon = camera.transform.position;
         xVariable = timeScaleExitTime * timeScaleDurationFactor * timeScaleDurationFactoWithSpeed;
     }
 
-    private void OnHit(Vector2 hitPosition, float hitSpeed, HurtType hurtType, HitEffects.HitEffectsData hitEffectsData)
+    public void OnHit(Collision2D collision, HurtType hurtType)
     {
+        HitEffects hitEffectsData;
+        if (!collision.otherCollider.TryGetComponent<HitEffects>(out hitEffectsData)) return;
+
+        Vector2 hitPosition = collision.GetContact(0).point;
+        Vector2 hitNormal = collision.GetContact(0).normal;
+        float hitSpeed = Utils.GetCollisionNormalVelocity(collision.relativeVelocity, hitNormal);
+        hitEffectsData.Play(hitSpeed);
+
         if ((hitEffectsData.hitEffectsEnum & HitEffects.HitEffectsEnum.componentParticle) != 0)
         {
             if (!componentParticle) return;
