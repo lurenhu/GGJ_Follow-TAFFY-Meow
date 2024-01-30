@@ -799,7 +799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fb15a0b15727bb34d90e7a04b9f9437b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae37755b10aeb2d4794d5ce231c2449b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1380,6 +1380,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6eb3a689cc1c2f74eb5fbe4a86b926b7, type: 3}
   playerMaxHealth: 290
   enemyMaxHealth: 290
+  UIShowDelay: 2
+  UIShowDuration: 0.5
+  gameEndTimeScale: 0.1
 --- !u!4 &1421007055
 Transform:
   m_ObjectHideFlags: 0

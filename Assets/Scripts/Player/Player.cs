@@ -85,6 +85,9 @@ public class Player : MonoBehaviour
     /// </summary>
     private void PlayerArmController()
     {
+        
+        if (PauseMenu.gameIsPause) return;
+        
         if (Input.GetKey(GameManager.Instance.Player1_BigArm_Up))
         {
             UIInput.Find("Key_Q/Panel").gameObject.SetActive(true);

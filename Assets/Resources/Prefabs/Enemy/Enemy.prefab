@@ -272,7 +272,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -524,7 +524,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -637,7 +637,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 1.35, y: 0}
-  m_ConnectedAnchor: {x: 2.3207273, y: -1.7156556}
+  m_ConnectedAnchor: {x: 2.600727, y: -1.7156556}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -750,7 +750,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1115,13 +1115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39185d8a5c808c14082f44dba7dc80c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffectsData:
-    hitEffectsEnum: 3
-    componentStartSpeedFactor: 3
-    componentCountFactor: 0.5
-    shakeTransform: {fileID: 8109961804608951796}
-    transformShakeFactor: 0.01
-    transformShakeFrameRate: 30
+  hitEffectsEnum: 3
+  componentStartSpeedFactor: 3
+  componentCountFactor: 0.5
+  shakeTransform: {fileID: 8109961804608951796}
+  transformShakeFactor: 0.01
+  transformShakeFrameRate: 30
 --- !u!114 &1134025215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,13 +1250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39185d8a5c808c14082f44dba7dc80c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffectsData:
-    hitEffectsEnum: 2
-    componentStartSpeedFactor: 3
-    componentCountFactor: 0.5
-    shakeTransform: {fileID: 8708856272644913187}
-    transformShakeFactor: 0.01
-    transformShakeFrameRate: 30
+  hitEffectsEnum: 2
+  componentStartSpeedFactor: 3
+  componentCountFactor: 0.5
+  shakeTransform: {fileID: 8708856272644913187}
+  transformShakeFactor: 0.01
+  transformShakeFrameRate: 30
 --- !u!114 &1293058615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1382,9 +1380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13121fd4488de242b7fd5bfce56a378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 0
-  myHealth: {fileID: 3614220150991082032}
-  Head: {fileID: 8648417894287258827}
+  Player: {fileID: 0}
+  Enemy: {fileID: 0}
   UILose: {fileID: 0}
   UIWin: {fileID: 0}
   Images:
@@ -1394,6 +1391,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ddedf13e08b60cf49bfb9b81f4c611ca, type: 3}
   - {fileID: 21300000, guid: 1ab90f29951ac5347bf7a86cd2fab136, type: 3}
   - {fileID: 21300000, guid: 6eb3a689cc1c2f74eb5fbe4a86b926b7, type: 3}
+  playerMaxHealth: 0
+  enemyMaxHealth: 0
+  UIShowDelay: 2
+  UIShowDuration: 0.5
+  gameEndTimeScale: 0.1
 --- !u!1 &5031801366323271378
 GameObject:
   m_ObjectHideFlags: 0

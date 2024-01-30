@@ -70,7 +70,6 @@ public class AudioCtrl : MonoBehaviour
     private Rigidbody2D enemyHeadRb;
     [SerializeField]
     private bool isStop = false;
-    private EffectsManager effectsManager;
 
     private void Awake()
     {
@@ -102,13 +101,12 @@ public class AudioCtrl : MonoBehaviour
             }
             catch (Exception e) 
             {
-                GameObject.Find("EffectsManager").TryGetComponent<EffectsManager>(out effectsManager);
                 GameObject.Find("Enemy/EnemyArm/Fist").TryGetComponent<Rigidbody2D>(out playerFistRb);
                 GameObject.Find("Player/PlayerArm/Fist").TryGetComponent<Rigidbody2D>(out enemyFistRb);
 
-                if (effectsManager != null)
+                if (EffectsManager.Instance != null)
                 {
-                    effectsManager.OnHitEvent += AttackSoundFunc;
+                    EffectsManager.Instance.OnHitEvent += AttackSoundFunc;
                 }
                 PlayerMoveSound();
                 EnemyMoveSound();
