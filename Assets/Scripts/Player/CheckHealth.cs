@@ -22,7 +22,7 @@ public class CheckHealth : MonoBehaviour
 
     private void Start() {
         playerSprite = Player.Find("PlayerBody/Head/HeadSpriteAnchor/HeadSprite").GetComponent<SpriteRenderer>();
-        enemySprite = Enemy.Find("EnemyBody/Head/HeadSpriteAnchor/HeadSprite").GetComponent<SpriteRenderer>();
+        enemySprite = Enemy.Find("PlayerBody/Head/HeadSpriteAnchor/HeadSprite").GetComponent<SpriteRenderer>();
 
         playerHealth = Player.GetComponentInChildren<HealthSystem>();
         enemyHealth = Enemy.GetComponentInChildren<HealthSystem>();
