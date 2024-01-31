@@ -26,47 +26,47 @@ public class AudioCtrl : MonoBehaviour
 {
     public static AudioCtrl GetInstance { get; private set; }
     [SerializeField]
-    [Header("²»Í¬ÀàĞÍµÄÒôÁ¿£¬´Ó×óµ½ÓÒÒÀ´ÎÎªÒôÀÖ£¬·ÕÎ§£¬UIÒôĞ§,ÓÎÏ·ÒôĞ§")]
+    [Header("ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½Î§ï¿½ï¿½UIï¿½ï¿½Ğ§,ï¿½ï¿½Ï·ï¿½ï¿½Ğ§")]
     [Range(0f, 1f)]
     private float[] audioVolume = new float[] { 0.5f, 0.45f, 0.3f, 0.2f };
     [SerializeField]
-    [Header("²»Í¬ÀàĞÍµÄÓÎÏ·ÒôĞ§È¨ÖØ£¬´Ó×óµ½ÓÒÒÀ´ÎÎªËÀÍö±¬Õ¨£¬ÖØ»÷£¬ÊÜ»÷£¬ÒÆ¶¯")]
+    [Header("ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ğ§È¨ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¨ï¿½ï¿½ï¿½Ø»ï¿½ï¿½ï¿½ï¿½Ü»ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½")]
     [Range(0f, 1f)]
     private float[] gameSoundVolume = new float[] { 1f, 0.8f, 2.0f, 0.4f };
     [SerializeField]
-    [Header("²»Í¬ÀàĞÍµÄÒôÀÖ¿ØÖÆÆ÷£¬´Ó×óµ½ÓÒÒÀ´ÎÎªÒôÀÖ£¬·ÕÎ§£¬UIÒôĞ§£¬ÓÎÏ·ÒôĞ§")]
+    [Header("ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½Î§ï¿½ï¿½UIï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ğ§")]
     private AudioSource[] audioSource;
     [SerializeField]
-    [Header("Ëæ»úÒô¸ß×îĞ¡Öµ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡Öµ")]
     [Range(-3.0f, 3.0f)]
     private float randomPitchMin;
     [SerializeField]
-    [Header("Ëæ»úÒô¸ß×î´óÖµ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ")]
     [Range(-3.0f, 3.0f)]
     private float randomPitchMax;
     [SerializeField]
-    [Header("ÊÜ»÷ÒôĞ§ÁĞ±í")]
+    [Header("ï¿½Ü»ï¿½ï¿½ï¿½Ğ§ï¿½Ğ±ï¿½")]
     private AudioClip[] attackClip;
     [SerializeField]
-    [Header("ÖØ»÷ÒôĞ§ÁĞ±í")]
+    [Header("ï¿½Ø»ï¿½ï¿½ï¿½Ğ§ï¿½Ğ±ï¿½")]
     private AudioClip[] hitClip;
     [SerializeField]
-    [Header("ËÀÍöÒôĞ§")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§")]
     private AudioClip deadClip;
     [SerializeField]
-    [Header("ÒÆ¶¯ÒôĞ§")]
+    [Header("ï¿½Æ¶ï¿½ï¿½ï¿½Ğ§")]
     public AudioClip moveClip;
     [SerializeField]
-    [Header("Íæ¼ÒÈ­Í·¸ÕÌå")]
+    [Header("ï¿½ï¿½ï¿½È­Í·ï¿½ï¿½ï¿½ï¿½")]
     private Rigidbody2D playerFistRb;
     [SerializeField]
-    [Header("µĞÈËÈ­Í·¸ÕÌå")]
+    [Header("ï¿½ï¿½ï¿½ï¿½È­Í·ï¿½ï¿½ï¿½ï¿½")]
     private Rigidbody2D enemyFistRb;
     [SerializeField]
-    [Header("Íæ¼ÒµÄÍ·¸ÕÌå")]
+    [Header("ï¿½ï¿½Òµï¿½Í·ï¿½ï¿½ï¿½ï¿½")]
     private Rigidbody2D playerHeadRb;
     [SerializeField]
-    [Header("µĞÈËµÄÍ·µÄ¸ÕÌå")]
+    [Header("ï¿½ï¿½ï¿½Ëµï¿½Í·ï¿½Ä¸ï¿½ï¿½ï¿½")]
     private Rigidbody2D enemyHeadRb;
     [SerializeField]
     private bool isStop = false;
@@ -92,7 +92,7 @@ public class AudioCtrl : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 2)
         {
             try
             {
@@ -106,6 +106,7 @@ public class AudioCtrl : MonoBehaviour
 
                 if (EffectsManager.Instance != null)
                 {
+                    Debug.Log("add listener to onHitEvent");
                     EffectsManager.Instance.OnHitEvent += AttackSoundFunc;
                 }
                 PlayerMoveSound();
@@ -218,12 +219,12 @@ public class AudioCtrl : MonoBehaviour
     {
         if (isHardHit)
         {
-            Debug.Log("²¥·ÅÖØ»÷");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Ø»ï¿½");
             PlaySound(VolumeType.kGameSound, hitClip[UnityEngine.Random.Range(0, hitClip.Length)], GameSoundType.kHit);
         }
         else
         {
-            Debug.Log("²¥·ÅÊÕ»÷");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½");
             PlaySound(VolumeType.kGameSound, attackClip[UnityEngine.Random.Range(0, attackClip.Length)], GameSoundType.kAttack);
         }
     }

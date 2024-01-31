@@ -94,6 +94,7 @@ public class EffectsManager : MonoBehaviour
 
         if (hurtType == HurtType.kHead)
         {
+            Debug.Log("Invoke OnHitEvent(true)");
             OnHitEvent.Invoke(true);
             
             timeScaleDurationFactoWithSpeed = hitSpeed;
@@ -104,6 +105,7 @@ public class EffectsManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Invoke OnHitEvent(false)");
             OnHitEvent.Invoke(false);
         }
 

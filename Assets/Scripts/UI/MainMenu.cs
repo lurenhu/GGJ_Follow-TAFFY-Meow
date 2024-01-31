@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public GameObject setMenu;
+    public GameObject inputSettingMenu;
     public Slider ValueOne;
     public Slider ValueTwo;
     public AudioClip Botton;
@@ -22,6 +23,15 @@ public class MainMenu : MonoBehaviour
         AudioCtrl.GetInstance.UISoundFunc(Botton);
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
+
+        GameManager.Instance.startGameCounter++;
+    }
+
+    public void PlayMutiplayerGame()
+    {
+        AudioCtrl.GetInstance.UISoundFunc(Botton);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(2);
 
         GameManager.Instance.startGameCounter++;
     }
@@ -42,6 +52,18 @@ public class MainMenu : MonoBehaviour
     {
         AudioCtrl.GetInstance.UISoundFunc(Botton);
         setMenu.SetActive(true);
+    }
+
+    public void SetInputSettingMenu()
+    {
+        AudioCtrl.GetInstance.UISoundFunc(Botton); 
+        inputSettingMenu.SetActive(true);
+    }
+
+    public void ReturnSetMenu()
+    {
+        AudioCtrl.GetInstance.UISoundFunc(Botton); 
+        inputSettingMenu.SetActive(false);
     }
 
     public void SetSoundOne()

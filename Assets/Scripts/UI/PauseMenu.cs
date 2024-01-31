@@ -17,10 +17,16 @@ public class PauseMenu : MonoBehaviour
     public AudioClip readyClip;
     public AudioClip goClip;
 
+    public Sprite[] tutorialImages;
+    int currentIndex = 0;
+    public Image currentSprite;
+ 
     int openTutorialCounter;
     // Start is called before the first frame update
     void Start()
     {
+        currentSprite.sprite = tutorialImages[currentIndex];
+
         openTutorialCounter = 0;
 
         if (GameManager.Instance.startGameCounter > 1)
@@ -123,5 +129,11 @@ public class PauseMenu : MonoBehaviour
         {
             StartCoroutine(ReadyGo());
         }
+    }
+
+    public void TurnToNextTutorial()
+    {
+        Sprite temp = tutorialImages[(currentIndex++)%tutorialImages.Length];
+        currentSprite.sprite = temp;
     }
 }
