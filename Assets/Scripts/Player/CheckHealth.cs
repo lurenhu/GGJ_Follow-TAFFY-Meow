@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -9,6 +10,8 @@ public class CheckHealth : MonoBehaviour
     {
         Unknown,
         Win,
+        Player1Win,
+        Player2Win,
         Lose,
     }
 
@@ -19,6 +22,8 @@ public class CheckHealth : MonoBehaviour
     // public Transform Enemy;
     public GameObject UILose;
     public GameObject UIWin;
+    public GameObject UIPlayer1Win;
+    public GameObject UIPlayer2Win;
     public Sprite[] Images;
 
     public float playerMaxHealth;
@@ -64,21 +69,27 @@ public class CheckHealth : MonoBehaviour
 
     private void CheckWiner()
     {
-        if (playerHealth.getCurrentHealth == 0 && enemyHealth.getCurrentHealth != 0)
+        if (playerHealth != null && enemyHealth != null)
         {
-            Lose();
+            if (playerHealth.getCurrentHealth == 0 && enemyHealth.getCurrentHealth != 0)
+            {
+                Lose();
+            }
+            else if(enemyHealth.getCurrentHealth == 0 && playerHealth.getCurrentHealth != 0)
+            {
+                Win();
+            }
         }
-        else if(enemyHealth.getCurrentHealth == 0 && playerHealth.getCurrentHealth != 0)
+        else if (playerHealth != null && player2Health != null)
         {
-            Win();
-        }
-        else if(playerHealth.getCurrentHealth == 0 && player2Health.getCurrentHealth != 0)
-        {
-            Debug.Log("Player1 win");
-        }
-        else if(player2Health.getCurrentHealth == 0 && playerHealth.getCurrentHealth != 0)
-        {
-            Debug.Log("Player2 win");
+            if(playerHealth.getCurrentHealth == 0 && player2Health.getCurrentHealth != 0)
+            {
+                Player2_Win();
+            }
+            else if(player2Health.getCurrentHealth == 0 && playerHealth.getCurrentHealth != 0)
+            {
+                Player1_Win();
+            }
         }
         else
         {
@@ -177,6 +188,30 @@ public class CheckHealth : MonoBehaviour
         StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration, GameResult.Win));
     }
 
+    private void Player1_Win()
+    {
+        if (PauseMenu.gameIsPause) return;
+
+        OnGameEnd.Invoke(GameResult.Player1Win);
+
+        playerSprite.sprite = Images[0];
+        player2Sprite.sprite = Images[5];
+
+        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration, GameResult.Player1Win));
+    }
+
+    private void Player2_Win()
+    {
+        if (PauseMenu.gameIsPause) return;
+
+        OnGameEnd.Invoke(GameResult.Player2Win);
+
+        player2Sprite.sprite = Images[3];
+        playerSprite.sprite = Images[2];
+
+        StartCoroutine(GameEndCoroutine(UIShowDelay, UIShowDuration, GameResult.Player2Win));
+    }
+
     private IEnumerator GameEndCoroutine(float delay, float duration, GameResult gameResult)
     {
         PauseMenu.gameIsPause = true;
@@ -195,6 +230,14 @@ public class CheckHealth : MonoBehaviour
         if (gameResult == GameResult.Lose)
         {
             UILose.SetActive(true);
+        }
+        if (gameResult == GameResult.Player1Win)
+        {
+            UIPlayer1Win.SetActive(true);
+        }
+        if (gameResult == GameResult.Player2Win)
+        {
+            UIPlayer1Win.SetActive(true);
         }
         
     }

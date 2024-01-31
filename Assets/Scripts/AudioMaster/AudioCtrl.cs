@@ -106,7 +106,6 @@ public class AudioCtrl : MonoBehaviour
 
                 if (EffectsManager.Instance != null)
                 {
-                    Debug.Log("add listener to onHitEvent");
                     EffectsManager.Instance.OnHitEvent += AttackSoundFunc;
                 }
                 PlayerMoveSound();

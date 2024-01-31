@@ -43,7 +43,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         Player2_SmallArm_Up = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Player2_SmallArm_Up_Key",KeyCode.Backslash.ToString()));
         Player2_SmallArm_Down = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Player2_SmallArm_Down_Key",KeyCode.RightBracket.ToString()));
         Player2_Head_Up = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Player2_Head_Up_Key",KeyCode.Semicolon.ToString()));
-        Player2_Head_Down = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Player2_Head_Down_Key",KeyCode.Question.ToString()));
+        Player2_Head_Down = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Player2_Head_Down_Key",KeyCode.Quote.ToString()));
 
     }
 }
