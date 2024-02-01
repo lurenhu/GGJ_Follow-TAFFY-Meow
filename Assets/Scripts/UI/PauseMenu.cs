@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
     int currentIndex = 0;
     public Image currentSprite;
  
-    int openTutorialCounter;
+    [SerializeField] int openTutorialCounter;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +29,9 @@ public class PauseMenu : MonoBehaviour
 
         openTutorialCounter = 0;
 
-        if (GameManager.Instance.startGameCounter > 1)
+        if (GameManager.Instance.startGameCounter > 1 || GameManager.Instance.startMutiplayModeCounter > 1)
         {
+            openTutorialCounter++;
             CloseTutorial();
         }else
         {
@@ -57,6 +58,7 @@ public class PauseMenu : MonoBehaviour
 
     private IEnumerator ReadyGo()
     {
+        panel.gameObject.SetActive(true);
         Time.timeScale = 0;
         gameIsPause = true;
 
@@ -105,6 +107,14 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void RetryMutiplayMode()
+    {
+        AudioCtrl.GetInstance.UISoundFunc(Botton);
+        gameIsPause = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(2);
+    }
+
     public void QuitGame()
     {
         AudioCtrl.GetInstance.UISoundFunc(Botton);
@@ -125,7 +135,7 @@ public class PauseMenu : MonoBehaviour
         gameIsPause = false;
         Time.timeScale = 1;
 
-        if (openTutorialCounter + GameManager.Instance.startGameCounter < 3 || GameManager.Instance.startGameCounter > 1)
+        if (openTutorialCounter == 1)
         {
             StartCoroutine(ReadyGo());
         }

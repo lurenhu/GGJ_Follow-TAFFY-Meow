@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(2);
 
-        GameManager.Instance.startGameCounter++;
+        GameManager.Instance.startMutiplayModeCounter++;
     }
 
     public void QuitGame()

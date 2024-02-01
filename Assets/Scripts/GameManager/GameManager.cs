@@ -24,6 +24,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     public KeyCode Player2_Head_Down;
 
     public int startGameCounter;
+    public int startMutiplayModeCounter;
 
     protected override void Awake()
     {

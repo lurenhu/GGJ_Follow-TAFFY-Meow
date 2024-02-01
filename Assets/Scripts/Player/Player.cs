@@ -67,14 +67,20 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(GameManager.Instance.Player1_Head_Up) && head.localPosition.y < maxUp)
         {
-            UIInput.Find("Key_F/Panel").gameObject.SetActive(true);
+            if (UIInput != null)
+            {
+                UIInput.Find("Key_HeadUp/Panel").gameObject.SetActive(true);
+            }
 
             head.transform.position += new Vector3(0,moveSpeed * Time.deltaTime,0);
         }
 
         if (Input.GetKey(GameManager.Instance.Player1_Head_Down) && head.localPosition.y > minDown)
         {
-            UIInput.Find("Key_J/Panel").gameObject.SetActive(true);
+            if (UIInput != null)
+            {
+                UIInput.Find("Key_HeadDown/Panel").gameObject.SetActive(true);
+            }
 
             head.transform.position += new Vector3(0,-moveSpeed * Time.deltaTime,0);
         }
@@ -90,7 +96,10 @@ public class Player : MonoBehaviour
         
         if (Input.GetKey(GameManager.Instance.Player1_BigArm_Up))
         {
-            UIInput.Find("Key_Q/Panel").gameObject.SetActive(true);
+            if (UIInput != null)
+            {
+                UIInput.Find("Key_BigArmUp/Panel").gameObject.SetActive(true);
+            }
 
             bigJointMotor.motorSpeed = -bigJointSpiningSpeed;
             bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
@@ -98,7 +107,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(GameManager.Instance.Player1_BigArm_Down))
         {
-            UIInput.Find("Key_W/Panel").gameObject.SetActive(true);
+            if (UIInput != null)
+            {
+                UIInput.Find("Key_BigArmDown/Panel").gameObject.SetActive(true);
+            }
 
             bigJointMotor.motorSpeed = bigJointSpiningSpeed;
             bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
@@ -106,7 +118,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(GameManager.Instance.Player1_SmallArm_Up))
         {
-            UIInput.Find("Key_O/Panel").gameObject.SetActive(true);
+            if (UIInput != null)
+            {
+                UIInput.Find("Key_SmallArmUp/Panel").gameObject.SetActive(true);
+            }
 
             smallJointMotor.motorSpeed = -smallJointSpiningSpeed;
             smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
@@ -114,7 +129,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(GameManager.Instance.Player1_SmallArm_Down))
         {
-            UIInput.Find("Key_P/Panel").gameObject.SetActive(true);
+            if (UIInput != null)
+            {
+                UIInput.Find("Key_SmallArmDown/Panel").gameObject.SetActive(true);
+            }
 
             smallJointMotor.motorSpeed = smallJointSpiningSpeed;
             smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
@@ -128,26 +146,45 @@ public class Player : MonoBehaviour
     /// </summary>
     private void ReturnInitialState()
     {
-        if (!Input.GetKey(GameManager.Instance.Player1_Head_Up) && !Input.GetKey(GameManager.Instance.Player1_Head_Down))
+        if (UIInput != null)
         {
-            UIInput.Find("Key_F/Panel").gameObject.SetActive(false);
-            UIInput.Find("Key_J/Panel").gameObject.SetActive(false);
+            if (!Input.GetKey(GameManager.Instance.Player1_Head_Up)) 
+            {
+                UIInput.Find("Key_HeadUp/Panel").gameObject.SetActive(false);
+            }
+            if (!Input.GetKey(GameManager.Instance.Player1_Head_Down))
+            {
+                UIInput.Find("Key_HeadDown/Panel").gameObject.SetActive(false);
+            }
+            
+            if (!Input.GetKey(GameManager.Instance.Player1_BigArm_Up))
+            {
+                UIInput.Find("Key_BigArmUp/Panel").gameObject.SetActive(false);
+            }
+            if (!Input.GetKey(GameManager.Instance.Player1_BigArm_Down))
+            {
+                UIInput.Find("Key_BigArmDown/Panel").gameObject.SetActive(false);
+            }
+    
+            if (!Input.GetKey(GameManager.Instance.Player1_SmallArm_Up))
+            {
+                UIInput.Find("Key_SmallArmUp/Panel").gameObject.SetActive(false);
+            }
+            if (!Input.GetKey(GameManager.Instance.Player1_SmallArm_Down))
+            {
+                UIInput.Find("Key_SmallArmDown/Panel").gameObject.SetActive(false);
+            }
         }
-        
+
         if (!Input.GetKey(GameManager.Instance.Player1_BigArm_Up) && !Input.GetKey(GameManager.Instance.Player1_BigArm_Down))
         {
-            UIInput.Find("Key_Q/Panel").gameObject.SetActive(false);
-            UIInput.Find("Key_W/Panel").gameObject.SetActive(false);
-
             bigJointMotor.motorSpeed = 0;
             bigJoint.GetComponent<HingeJoint2D>().motor = bigJointMotor;
         }
 
+        
         if (!Input.GetKey(GameManager.Instance.Player1_SmallArm_Up) && !Input.GetKey(GameManager.Instance.Player1_SmallArm_Down))
         {
-            UIInput.Find("Key_O/Panel").gameObject.SetActive(false);
-            UIInput.Find("Key_P/Panel").gameObject.SetActive(false);
-
             smallJointMotor.motorSpeed = 0;
             smallJoint.GetComponent<HingeJoint2D>().motor = smallJointMotor;
         }
