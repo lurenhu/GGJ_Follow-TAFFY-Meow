@@ -21,7 +21,9 @@ public class PauseMenu : MonoBehaviour
     public Sprite[] tutorialImages;
     int currentIndex = 0;
     public Image currentSprite;
- 
+
+    bool tutorialHasOpen = false;
+
     [SerializeField] int openTutorialCounter;
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,12 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (tutorialHasOpen)
+            {
+                CloseTutorial();
+                return;
+            }
+
             if (gameIsPause)
             {
                 Resume();
@@ -141,6 +149,7 @@ public class PauseMenu : MonoBehaviour
         gameIsPause = true;
         Time.timeScale = 0;
         openTutorialCounter ++;
+        tutorialHasOpen = true;
     }
 
     public void CloseTutorial()
@@ -153,6 +162,7 @@ public class PauseMenu : MonoBehaviour
         {
             StartCoroutine(ReadyGo());
         }
+        tutorialHasOpen = false;
     }
 
     public void TurnToNextTutorial()
