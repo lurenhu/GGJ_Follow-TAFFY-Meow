@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public bool isMultiplayMode;
     public static bool gameIsPause = false;
     public GameObject pauseMenuUI;
     public AudioClip Botton;
@@ -29,13 +30,26 @@ public class PauseMenu : MonoBehaviour
 
         openTutorialCounter = 0;
 
-        if (GameManager.Instance.startGameCounter > 1 || GameManager.Instance.startMutiplayModeCounter > 1)
+        if (isMultiplayMode)
         {
-            openTutorialCounter++;
-            CloseTutorial();
+            if (GameManager.Instance.startMutiplayModeCounter > 1)
+            {
+                openTutorialCounter++;
+                CloseTutorial();
+            }else
+            {
+                OpenTutorial();
+            }
         }else
         {
-            OpenTutorial();
+            if (GameManager.Instance.startGameCounter > 1)
+            {
+                openTutorialCounter++;
+                CloseTutorial();
+            }else
+            {
+                OpenTutorial();
+            }
         }
 
     }
