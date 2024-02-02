@@ -14,6 +14,8 @@ public class CheckHealth : MonoBehaviour
         Lose,
     }
 
+    public static CheckHealth Instance;
+
     public event Action<GameResult> OnGameEnd = delegate { };
 
     // public Transform Player_2;
@@ -43,6 +45,17 @@ public class CheckHealth : MonoBehaviour
     bool END = false;
 
     [Range(0,100)] public static int odds;
+
+    private void Awake() {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start() {
         // playerSprite = Player.Find("PlayerBody/Head/HeadSpriteAnchor/HeadSprite").GetComponent<SpriteRenderer>();
@@ -239,5 +252,47 @@ public class CheckHealth : MonoBehaviour
             UIPlayer1Win.SetActive(true);
         }
         
+    }
+
+    public void CheckPlayerAndAI()
+    {
+        if (playerHealth == null || enemyHealth == null)
+        {
+            return;
+        }
+
+        if (playerHealth.getCurrentHealth > enemyHealth.getCurrentHealth)
+        {
+            Win();
+        }
+        else if (playerHealth.getCurrentHealth < enemyHealth.getCurrentHealth)
+        {
+            Lose();
+        }
+        else
+        {
+            Debug.Log("No Winner");
+        }
+    }
+
+    public void CheckPlayer1AndPlayer2()
+    {
+        if (playerHealth == null || player2Health == null)
+        {
+            return;
+        }
+
+        if (playerHealth.getCurrentHealth > player2Health.getCurrentHealth)
+        {
+            Player1_Win();
+        }
+        else if (playerHealth.getCurrentHealth < player2Health.getCurrentHealth)
+        {
+            Player2_Win();
+        }
+        else
+        {
+            Debug.Log("No Winner");
+        }
     }
 }
